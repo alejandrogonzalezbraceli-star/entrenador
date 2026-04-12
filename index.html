@@ -148,202 +148,2626 @@ const MACROS = {
 };
 
 const MEALS = [
-  { name: "Desayuno", time: "7:30-8:00", icon: "\u2600\uFE0F", items: [
+  { name: "Desayuno", time: "7:30-8:00", icon: "☀️", items: [
     { food: "Copos de avena", qty: "50g", p: 7, g: 4, c: 32, kcal: 190 },
     { food: "Leche semidesnatada", qty: "200ml", p: 7, g: 3, c: 10, kcal: 95 },
     { food: "Claras de huevo", qty: "3 claras", p: 11, g: 0, c: 0, kcal: 44 },
-    { food: "\u00BD Pl\u00E1tano", qty: "80g", p: 1, g: 0, c: 18, kcal: 75 },
+    { food: "½ Plátano", qty: "80g", p: 1, g: 0, c: 18, kcal: 75 },
   ]},
-  { name: "Media ma\u00F1ana", time: "10:30", icon: "\uD83E\uDD6A", items: [
+  { name: "Media mañana", time: "10:30", icon: "🥪", items: [
     { food: "Pan integral", qty: "60g", p: 5, g: 1, c: 28, kcal: 145 },
     { food: "Pechuga de pavo", qty: "80g", p: 16, g: 1, c: 0, kcal: 75 },
     { food: "Queso light", qty: "20g", p: 5, g: 2, c: 0, kcal: 35 },
     { food: "Manzana", qty: "150g", p: 1, g: 0, c: 18, kcal: 75 },
   ]},
-  { name: "Comida", time: "13:30-14:00", icon: "\uD83C\uDF57", items: [
+  { name: "Comida", time: "13:30-14:00", icon: "🍗", items: [
     { food: "Arroz", qty: "55g crudo", p: 4, g: 0, c: 43, kcal: 190 },
     { food: "Pechuga de pollo", qty: "200g", p: 44, g: 4, c: 0, kcal: 212 },
     { food: "Aceite de oliva", qty: "8g", p: 0, g: 8, c: 0, kcal: 72 },
     { food: "Verduras variadas", qty: "200g", p: 4, g: 0, c: 10, kcal: 55 },
   ]},
-  { name: "Pre-entreno", time: "1-1.5h antes", icon: "\u26A1", items: [
-    { food: "Pl\u00E1tano", qty: "100g", p: 1, g: 0, c: 23, kcal: 95 },
+  { name: "Pre-entreno", time: "1-1.5h antes", icon: "⚡", items: [
+    { food: "Plátano", qty: "100g", p: 1, g: 0, c: 23, kcal: 95 },
   ]},
-  { name: "Post-entreno", time: "Inmediato", icon: "\uD83D\uDCAA", items: [
+  { name: "Post-entreno", time: "Inmediato", icon: "💪", items: [
     { food: "Batido whey", qty: "35g", p: 28, g: 1, c: 2, kcal: 130 },
     { food: "Tortitas de arroz", qty: "25g", p: 2, g: 0, c: 20, kcal: 90 },
     { food: "Manzana", qty: "100g", p: 0, g: 0, c: 14, kcal: 55 },
   ]},
-  { name: "Cena", time: "21:00", icon: "\uD83D\uDC1F", items: [
+  { name: "Cena", time: "21:00", icon: "🐟", items: [
     { food: "Patata", qty: "200g cruda", p: 4, g: 0, c: 35, kcal: 155 },
-    { food: "Salm\u00F3n", qty: "180g", p: 36, g: 19, c: 0, kcal: 315 },
+    { food: "Salmón", qty: "180g", p: 36, g: 19, c: 0, kcal: 315 },
     { food: "Aceite de oliva", qty: "5g", p: 0, g: 5, c: 0, kcal: 45 },
     { food: "Ensalada grande", qty: "200g", p: 3, g: 0, c: 8, kcal: 40 },
   ]},
-  { name: "Antes de dormir", time: "Opcional", icon: "\uD83C\uDF19", items: [
-    { food: "Reques\u00F3n 0%", qty: "150g", p: 18, g: 0, c: 6, kcal: 95 },
+  { name: "Antes de dormir", time: "Opcional", icon: "🌙", items: [
+    { food: "Requesón 0%", qty: "150g", p: 18, g: 0, c: 6, kcal: 95 },
   ]},
 ];
 
 const TRAINING_DAYS = [
   {
-    day: "DOM", label: "Push", muscle: "Pecho + Hombro + Tr\u00EDceps", color: "#E85A4F",
-    mesos: [
-      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Press banca barra", sets: 3, reps: "5-7", weight: "70 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Press inclinado DB", sets: 3, reps: "8-10", weight: "24 c/u", rir: "2", rest: "2 min", type: "C" },
-        { name: "Aperturas polea alta", sets: 2, reps: "12-15", weight: "12 c/u", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Press militar DB", sets: 3, reps: "8-10", weight: "18 c/u", rir: "2", rest: "2 min", type: "C" },
-        { name: "Elevaciones laterales", sets: 3, reps: "12-15", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
-        { name: "Press franc\u00E9s EZ", sets: 2, reps: "10-12", weight: "25 kg", rir: "2", rest: "60-90s", type: "A" },
-      ]},
-      { name: "M2: Preservaci\u00F3n", weeks: "S5-S8", exercises: [
-        { name: "Press banca barra", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Press inclinado barra", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Aperturas inclinado DB", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Press militar barra", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Laterales cable", sets: 3, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
-        { name: "Ext. tr\u00EDceps cuerda", sets: 2, reps: "12-15", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
-      ]},
-      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
-        { name: "Press banca barra", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
-        { name: "Press inclinado DB", sets: 3, reps: "6-8", weight: "=M1", rir: "2", rest: "2 min", type: "C" },
-        { name: "Cruce poleas", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Push press", sets: 3, reps: "5-7", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Laterales DB", sets: 3, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
-        { name: "Fondos paralelas", sets: 2, reps: "6-10", weight: "BW", rir: "2", rest: "90s", type: "C" },
-      ]},
-    ],
+    "day": "DOM",
+    "label": "Push",
+    "muscle": "Pecho + Hombro + Tríceps",
+    "color": "#E85A4F",
+    "mesos": [
+      {
+        "name": "M1: Mantenimiento fuerza",
+        "weeks": "S1-S4",
+        "exercises": [
+          {
+            "name": "Press banca barra",
+            "reps": "5-7",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "70 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press inclinado DB",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "24 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "24 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "24 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "24 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Aperturas polea alta",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "12 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "12 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "12 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "12 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press militar DB",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "18 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "18 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "18 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "18 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Elevaciones laterales",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "10 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "10 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "10 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "10 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press francés EZ",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "25 kg",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M2: Preservación",
+        "weeks": "S5-S8",
+        "exercises": [
+          {
+            "name": "Press banca barra",
+            "reps": "5-7",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press inclinado barra",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Aperturas inclinado DB",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press militar barra",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Laterales cable",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Ext. tríceps cuerda",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M3: Sprint final",
+        "weeks": "S9-S12",
+        "exercises": [
+          {
+            "name": "Press banca barra",
+            "reps": "4-6",
+            "rest": "3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press inclinado DB",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Cruce poleas",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Push press",
+            "reps": "5-7",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Laterales DB",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Fondos paralelas",
+            "reps": "6-10",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "BW",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
-    day: "LUN", label: "Pull", muscle: "Espalda + B\u00EDceps", color: "#1976D2",
-    mesos: [
-      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Jal\u00F3n al pecho ancho", sets: 3, reps: "6-8", weight: "65 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Remo DB unilateral", sets: 3, reps: "8-10", weight: "30 kg", rir: "2", rest: "90s/lado", type: "C" },
-        { name: "Pullover polea", sets: 2, reps: "12-15", weight: "18 kg", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "20 kg", rir: "1", rest: "60s", type: "A" },
-        { name: "Curl barra EZ", sets: 2, reps: "10-12", weight: "30 kg", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl martillo", sets: 2, reps: "10-12", weight: "14 c/u", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M2: Preservaci\u00F3n", weeks: "S5-S8", exercises: [
-        { name: "Dominadas", sets: 3, reps: "5-8", weight: "BW", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Remo barra prono", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Remo polea neutro", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "22 kg", rir: "1", rest: "60s", type: "A" },
-        { name: "Curl inclinado DB", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Curl concentrado", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
-        { name: "Jal\u00F3n supino cerrado", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
-        { name: "Remo Pendlay", sets: 3, reps: "4-6", weight: "nuevo", rir: "2", rest: "2-3 min", type: "C" },
-        { name: "Pullover polea", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Facepull", sets: 3, reps: "15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
-        { name: "Curl barra recta", sets: 2, reps: "6-8", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl martillo polea", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
-      ]},
-    ],
+    "day": "LUN",
+    "label": "Pull",
+    "muscle": "Espalda + Bíceps",
+    "color": "#1976D2",
+    "mesos": [
+      {
+        "name": "M1: Mantenimiento fuerza",
+        "weeks": "S1-S4",
+        "exercises": [
+          {
+            "name": "Jalón al pecho ancho",
+            "reps": "6-8",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "65 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo DB unilateral",
+            "reps": "8-10",
+            "rest": "90s/lado",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Pullover polea",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "18 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "18 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "18 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "18 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Facepull cuerda",
+            "reps": "15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "20 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "20 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "20 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "20 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl barra EZ",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "30 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl martillo",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "14 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "14 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "14 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "14 c/u",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M2: Preservación",
+        "weeks": "S5-S8",
+        "exercises": [
+          {
+            "name": "Dominadas",
+            "reps": "5-8",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "BW",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "BW",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo barra prono",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo polea neutro",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Facepull cuerda",
+            "reps": "15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "22 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "22 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "22 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "22 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl inclinado DB",
+            "reps": "8-10",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl concentrado",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M3: Sprint final",
+        "weeks": "S9-S12",
+        "exercises": [
+          {
+            "name": "Jalón supino cerrado",
+            "reps": "5-7",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo Pendlay",
+            "reps": "4-6",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Pullover polea",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Facepull",
+            "reps": "15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl barra recta",
+            "reps": "6-8",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl martillo polea",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
-    day: "MAR", label: "Quads", muscle: "Cu\u00E1driceps + Gemelos", color: "#2E7D32",
-    mesos: [
-      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Sentadilla barra", sets: 3, reps: "5-7", weight: "75 kg", rir: "2-3", rest: "3 min", type: "C" },
-        { name: "Prensa piernas", sets: 3, reps: "10-12", weight: "120 kg", rir: "2", rest: "2 min", type: "C" },
-        { name: "Sentadilla b\u00FAlgara", sets: 2, reps: "8-10", weight: "16 c/u", rir: "2", rest: "90s/lado", type: "C" },
-        { name: "Extensi\u00F3n cu\u00E1driceps", sets: 2, reps: "12-15", weight: "40 kg", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Gemelos de pie", sets: 3, reps: "15-20", weight: "60 kg", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M2: Preservaci\u00F3n", weeks: "S5-S8", exercises: [
-        { name: "Sentadilla con pausa", sets: 3, reps: "4-6", weight: "=M1", rir: "2-3", rest: "3 min", type: "C" },
-        { name: "Hack squat", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Zancada caminando", sets: 2, reps: "10-12/p", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
-        { name: "Extensi\u00F3n cu\u00E1driceps", sets: 2, reps: "12-15", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Gemelos de pie", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
-        { name: "Sentadilla barra", sets: 3, reps: "3-5", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
-        { name: "Sentadilla frontal", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2-3 min", type: "C" },
-        { name: "Prensa piernas", sets: 2, reps: "8-10", weight: "=M1+", rir: "2", rest: "2 min", type: "C" },
-        { name: "Extensi\u00F3n cu\u00E1driceps", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Gemelos de pie", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
-      ]},
-    ],
+    "day": "MAR",
+    "label": "Quads",
+    "muscle": "Cuádriceps + Gemelos",
+    "color": "#2E7D32",
+    "mesos": [
+      {
+        "name": "M1: Mantenimiento fuerza",
+        "weeks": "S1-S4",
+        "exercises": [
+          {
+            "name": "Sentadilla barra",
+            "reps": "5-7",
+            "rest": "3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "75 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Prensa piernas",
+            "reps": "10-12",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "120 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "120 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "120 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "120 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Sentadilla búlgara",
+            "reps": "8-10",
+            "rest": "90s/lado",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "16 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Extensión cuádriceps",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "40 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos de pie",
+            "reps": "15-20",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "60 kg",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M2: Preservación",
+        "weeks": "S5-S8",
+        "exercises": [
+          {
+            "name": "Sentadilla con pausa",
+            "reps": "4-6",
+            "rest": "3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hack squat",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Zancada caminando",
+            "reps": "10-12/p",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Extensión cuádriceps",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos de pie",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M3: Sprint final",
+        "weeks": "S9-S12",
+        "exercises": [
+          {
+            "name": "Sentadilla barra",
+            "reps": "3-5",
+            "rest": "3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Sentadilla frontal",
+            "reps": "6-8",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Prensa piernas",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1+",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Extensión cuádriceps",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos de pie",
+            "reps": "10-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
-    day: "MI\u00C9", label: "Posterior", muscle: "Isquios + Gl\u00FAteos + Gemelos", color: "#F57C00",
-    mesos: [
-      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Peso muerto rumano", sets: 3, reps: "6-8", weight: "80 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Hip thrust barra", sets: 3, reps: "10-12", weight: "70 kg", rir: "2", rest: "2 min", type: "C" },
-        { name: "Curl femoral tumbado", sets: 2, reps: "10-12", weight: "35 kg", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl femoral sentado", sets: 2, reps: "12-15", weight: "30 kg", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Hiperextensiones", sets: 2, reps: "12-15", weight: "10 kg", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "15-20", weight: "30 kg", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M2: Preservaci\u00F3n", weeks: "S5-S8", exercises: [
-        { name: "RDL con pausa", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Hip thrust unilateral", sets: 2, reps: "8-10/p", weight: "nuevo", rir: "2", rest: "90s/p", type: "C" },
-        { name: "Curl n\u00F3rdico", sets: 2, reps: "4-6", weight: "BW", rir: "2", rest: "90s", type: "C" },
-        { name: "Buenos d\u00EDas", sets: 2, reps: "8-10", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
-        { name: "Hiperext. lastradas", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
-        { name: "Peso muerto rumano", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
-        { name: "Hip thrust barra", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
-        { name: "Curl femoral tumbado", sets: 2, reps: "8-10", weight: "=M2", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl femoral sentado", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Swing KB", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
-      ]},
-    ],
+    "day": "MIÉ",
+    "label": "Posterior",
+    "muscle": "Isquios + Glúteos + Gemelos",
+    "color": "#F57C00",
+    "mesos": [
+      {
+        "name": "M1: Mantenimiento fuerza",
+        "weeks": "S1-S4",
+        "exercises": [
+          {
+            "name": "Peso muerto rumano",
+            "reps": "6-8",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "80 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "80 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "80 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "80 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hip thrust barra",
+            "reps": "10-12",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "70 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl femoral tumbado",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "35 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "35 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "35 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "35 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl femoral sentado",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "30 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hiperextensiones",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "10 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos sentado",
+            "reps": "15-20",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "30 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "30 kg",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M2: Preservación",
+        "weeks": "S5-S8",
+        "exercises": [
+          {
+            "name": "RDL con pausa",
+            "reps": "5-7",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hip thrust unilateral",
+            "reps": "8-10/p",
+            "rest": "90s/p",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl nórdico",
+            "reps": "4-6",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "BW",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Buenos días",
+            "reps": "8-10",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hiperext. lastradas",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos sentado",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M3: Sprint final",
+        "weeks": "S9-S12",
+        "exercises": [
+          {
+            "name": "Peso muerto rumano",
+            "reps": "4-6",
+            "rest": "3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Hip thrust barra",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl femoral tumbado",
+            "reps": "8-10",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Curl femoral sentado",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Swing KB",
+            "reps": "12-15",
+            "rest": "60-90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Gemelos sentado",
+            "reps": "10-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
-    day: "JUE", label: "H\u00EDbrido", muscle: "Upper Body completo", color: "#7B1FA2",
-    mesos: [
-      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Press inclinado barra", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
-        { name: "Remo con barra", sets: 3, reps: "6-8", weight: "65 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Press Arnold", sets: 2, reps: "10-12", weight: "16 c/u", rir: "2", rest: "90s", type: "C" },
-        { name: "Jal\u00F3n supino", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
-        { name: "Laterales", sets: 2, reps: "15-20", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
-        { name: "SS: Curl + Ext. tr\u00EDceps", sets: 2, reps: "12-15", weight: "15+22", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M2: Preservaci\u00F3n", weeks: "S5-S8", exercises: [
-        { name: "Press plano DB", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Remo polea neutro", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Press militar DB", sets: 2, reps: "8-10", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
-        { name: "Jal\u00F3n neutro cerrado", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
-        { name: "Laterales cable", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
-        { name: "SS: Curl mart. + Kick.", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
-      ]},
-      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
-        { name: "Press inclinado barra", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
-        { name: "Remo barra pesado", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
-        { name: "Press Arnold", sets: 2, reps: "8-10", weight: "=M1", rir: "2", rest: "90s", type: "C" },
-        { name: "Jal\u00F3n supino", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
-        { name: "Laterales DB", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
-        { name: "SS: Curl EZ + Franc\u00E9s", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-      ]},
-    ],
-  },
+    "day": "JUE",
+    "label": "Híbrido",
+    "muscle": "Upper Body completo",
+    "color": "#7B1FA2",
+    "mesos": [
+      {
+        "name": "M1: Mantenimiento fuerza",
+        "weeks": "S1-S4",
+        "exercises": [
+          {
+            "name": "Press inclinado barra",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "60 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo con barra",
+            "reps": "6-8",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "65 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "65 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press Arnold",
+            "reps": "10-12",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "16 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "16 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Jalón supino",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "60 kg",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Laterales",
+            "reps": "15-20",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "10 c/u",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "10 c/u",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "10 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "10 c/u",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "SS: Curl + Ext. tríceps",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "15+22",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "15+22",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "15+22",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "15+22",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M2: Preservación",
+        "weeks": "S5-S8",
+        "exercises": [
+          {
+            "name": "Press plano DB",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo polea neutro",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press militar DB",
+            "reps": "8-10",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Jalón neutro cerrado",
+            "reps": "8-10",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Laterales cable",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "SS: Curl mart. + Kick.",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "M3: Sprint final",
+        "weeks": "S9-S12",
+        "exercises": [
+          {
+            "name": "Press inclinado barra",
+            "reps": "5-7",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Remo barra pesado",
+            "reps": "4-6",
+            "rest": "2-3 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Press Arnold",
+            "reps": "8-10",
+            "rest": "90s",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Jalón supino",
+            "reps": "6-8",
+            "rest": "2 min",
+            "type": "C",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "3"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Laterales DB",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "=M1",
+                "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "SS: Curl EZ + Francés",
+            "reps": "8-10",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "3"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
+              },
+              {
+                "sets": 1,
+                "weight": "nuevo",
+                "rir": "3-4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ];
 
 const WEEK_SCHEDULE = [
   { day: "DOM", type: "train", label: "Push", color: "#E85A4F" },
   { day: "LUN", type: "train", label: "Pull", color: "#1976D2" },
   { day: "MAR", type: "train", label: "Quads", color: "#2E7D32" },
-  { day: "MI\u00C9", type: "train", label: "Posterior", color: "#F57C00" },
-  { day: "JUE", type: "train", label: "H\u00EDbrido", color: "#7B1FA2" },
+  { day: "MIÉ", type: "train", label: "Posterior", color: "#F57C00" },
+  { day: "JUE", type: "train", label: "Híbrido", color: "#7B1FA2" },
   { day: "VIE", type: "rest", label: "Descanso", color: "#546E7A", cardio: "LISS 30-40 min" },
-  { day: "S\u00C1B", type: "rest", label: "Descanso", color: "#546E7A", cardio: "LISS 30-40 min" },
+  { day: "SÁB", type: "rest", label: "Descanso", color: "#546E7A", cardio: "LISS 30-40 min" },
 ];
 
 const MESO_INFO = [
-  { num: 1, name: "Mantenimiento de fuerza", weeks: "S1-S4", color: "#1976D2", desc: "Adaptaci\u00F3n al d\u00E9ficit. Mantener pesos del bulk." },
-  { num: 2, name: "Preservaci\u00F3n muscular", weeks: "S5-S8", color: "#F57C00", desc: "Variantes nuevas. Diet break S8." },
-  { num: 3, name: "Sprint final", weeks: "S9-S12", color: "#2E7D32", desc: "Reps bajas. Se\u00F1al de fuerza m\u00E1xima." },
+  { num: 1, name: "Mantenimiento de fuerza", weeks: "S1-S4", color: "#1976D2", desc: "Adaptación al déficit. Mantener pesos del bulk." },
+  { num: 2, name: "Preservación muscular", weeks: "S5-S8", color: "#F57C00", desc: "Variantes nuevas. Diet break S8." },
+  { num: 3, name: "Sprint final", weeks: "S9-S12", color: "#2E7D32", desc: "Reps bajas. Señal de fuerza máxima." },
 ];
 
 // ── Components ──
@@ -361,15 +2785,17 @@ function MacroRing({ value, unit, label, color }) {
   );
 }
 
-function ExerciseRow({ ex, dayColor }) {
+function ExerciseRow({ ex, weekIdx, dayColor }) {
+  const [open, setOpen] = useState(false);
+  const wData = ex.weeks[weekIdx];
   return (
-    <div className="exercise-row" style={{ borderLeft: `3px solid ${ex.type === "C" ? dayColor : "var(--text3)"}` }}>
+    <div className="exercise-row" onClick={() => setOpen(!open)} style={{ borderLeft: `3px solid ${ex.type === "C" ? dayColor : "var(--text3)"}` }}>
       <div className="exercise-info">
         <div className="exercise-name">{ex.name}</div>
-        <div className="exercise-detail">{ex.sets}\u00D7{ex.reps} \u00B7 RIR {ex.rir} \u00B7 {ex.rest}</div>
+        <div className="exercise-detail">{wData.sets}×{ex.reps} · RIR {wData.rir} · {ex.rest}</div>
       </div>
       <div className="exercise-weight">
-        <div className="exercise-weight-val">{ex.weight}</div>
+        <div className="exercise-weight-val">{wData.weight}</div>
         <div className="exercise-rir">{ex.type === "C" ? "COMP" : "AISL"}</div>
       </div>
     </div>
@@ -400,7 +2826,7 @@ function MealCard({ meal }) {
             <div className="meal-item" key={i}>
               <div>
                 <span className="meal-item-name">{item.food}</span>
-                <span className="meal-item-qty"> \u00B7 {item.qty}</span>
+                <span className="meal-item-qty"> · {item.qty}</span>
               </div>
               <span className="meal-item-macros">{item.p}P {item.g}G {item.c}C</span>
             </div>
@@ -412,8 +2838,7 @@ function MealCard({ meal }) {
 }
 
 // ── Tabs ──
-function DashboardTab() {
-  const [week, setWeek] = useState(1);
+function DashboardTab({ week, setWeek }) {
   const mesoNum = week <= 4 ? 1 : week <= 8 ? 2 : 3;
   const meso = MESO_INFO[mesoNum - 1];
   const isDietBreak = week === 8;
@@ -444,7 +2869,7 @@ function DashboardTab() {
         <p style={{ fontSize: 13, color: "var(--text2)", lineHeight: 1.5 }}>{meso.desc}</p>
         {isDeload && !isDietBreak && (
           <div style={{ marginTop: 10, padding: "8px 12px", background: "rgba(255,199,0,0.1)", borderRadius: 8, fontSize: 12, color: "#FFD54F" }}>
-            <strong>DELOAD</strong> — Volumen reducido. Recuperaci\u00F3n.
+            <strong>DELOAD</strong> — Volumen reducido. Recuperación.
           </div>
         )}
       </div>
@@ -452,7 +2877,7 @@ function DashboardTab() {
       {isDietBreak && (
         <div className="diet-break-banner">
           <h3>DIET BREAK</h3>
-          <p>Calor\u00EDas a mantenimiento (2.800 kcal). Carbos \u2191 a 370g. No es cheat week.</p>
+          <p>Calorías a mantenimiento (2.800 kcal). Carbos ↑ a 370g. No es cheat week.</p>
         </div>
       )}
 
@@ -461,7 +2886,7 @@ function DashboardTab() {
         <div className="kcal-big">{isDietBreak ? "2.800" : "2.300"}</div>
         <div className="kcal-label">kcal</div>
         <div className="macro-rings">
-          <MacroRing value={180} unit="g" label="Prote\u00EDna" color="var(--protein)" />
+          <MacroRing value={180} unit="g" label="Proteína" color="var(--protein)" />
           <MacroRing value={isDietBreak ? 370 : 235} unit="g" label="Carbos" color="var(--carbs)" />
           <MacroRing value={70} unit="g" label="Grasa" color="var(--fat)" />
         </div>
@@ -481,7 +2906,7 @@ function DashboardTab() {
           <span className="stat-value" style={{ color: "var(--green)" }}>{estWeight} kg</span>
         </div>
         <div className="progress-stat">
-          <span className="stat-label">P\u00E9rdida total est.</span>
+          <span className="stat-label">Pérdida total est.</span>
           <span className="stat-value">{(80 - estWeight).toFixed(1)} kg</span>
         </div>
         <div className="progress-stat">
@@ -496,7 +2921,7 @@ function DashboardTab() {
           <div key={i} className="week-day" style={{ background: `${d.color}15` }}>
             <div className="week-day-name" style={{ color: d.color }}>{d.day}</div>
             <div className="week-day-label">{d.label}</div>
-            {d.cardio && <div style={{ fontSize: 9, color: "var(--green)", marginTop: 4 }}>\uD83D\uDEB6</div>}
+            {d.cardio && <div style={{ fontSize: 9, color: "var(--green)", marginTop: 4 }}>🚶</div>}
             <div className="week-day-dot" style={{ background: d.type === "train" ? d.color : "var(--border)" }} />
           </div>
         ))}
@@ -505,18 +2930,34 @@ function DashboardTab() {
   );
 }
 
-function TrainingTab() {
+function TrainingTab({ week, setWeek }) {
   const [selectedDay, setSelectedDay] = useState(0);
-  const [selectedMeso, setSelectedMeso] = useState(0);
+  
+  const mesoNum = week <= 4 ? 1 : week <= 8 ? 2 : 3;
+  const mesoIdx = mesoNum - 1;
+  const weekIdx = (week - 1) % 4; // 0, 1, 2, 3
+  
   const day = TRAINING_DAYS[selectedDay];
-  const meso = day.mesos[selectedMeso];
+  const meso = day.mesos[mesoIdx];
 
   return (
     <div className="content fade-up">
       <div className="section-title">Entrenamiento</div>
+      <div style={{ display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 4, WebkitOverflowScrolling: "touch" }}>
+        {[...Array(12)].map((_, i) => (
+          <button key={i} onClick={() => setWeek(i + 1)} style={{
+            flex: "0 0 auto", width: 34, height: 34, borderRadius: 10, border: "none",
+            background: week === i + 1 ? MESO_INFO[i < 4 ? 0 : i < 8 ? 1 : 2].color : "var(--bg2)",
+            color: week === i + 1 ? "#fff" : "var(--text3)",
+            fontFamily: "'Space Mono', monospace", fontSize: 12, fontWeight: 700, cursor: "pointer",
+            transition: "all 0.2s",
+          }}>{i + 1}</button>
+        ))}
+      </div>
+
       <div style={{ display: "flex", gap: 6, marginBottom: 16, overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
         {TRAINING_DAYS.map((d, i) => (
-          <button key={i} onClick={() => { setSelectedDay(i); setSelectedMeso(0); }} style={{
+          <button key={i} onClick={() => setSelectedDay(i)} style={{
             flex: "0 0 auto", padding: "10px 16px", borderRadius: 10, border: "none",
             background: selectedDay === i ? d.color : "var(--bg2)",
             color: selectedDay === i ? "#fff" : "var(--text3)",
@@ -530,29 +2971,19 @@ function TrainingTab() {
         <div className="card-title">{day.label}</div>
         <p style={{ fontSize: 12, color: "var(--text2)", marginTop: 4 }}>{day.muscle}</p>
         <p style={{ fontSize: 11, color: "var(--text3)", marginTop: 2 }}>
-          {meso.exercises.length} ejercicios \u00B7 {meso.exercises.reduce((s, e) => s + e.sets, 0)} series \u00B7 ~50-60 min
+          {meso.exercises.length} ejercicios · {meso.exercises.reduce((s, e) => s + (e.weeks ? e.weeks[weekIdx].sets : 0), 0)} series · ~50-60 min
         </p>
       </div>
 
-      <div className="meso-tabs">
-        {day.mesos.map((m, i) => (
-          <button key={i} onClick={() => setSelectedMeso(i)}
-            className={`meso-tab ${selectedMeso === i ? "active" : ""}`}
-            style={selectedMeso === i ? { background: MESO_INFO[i].color } : {}}>
-            {m.weeks}
-          </button>
-        ))}
-      </div>
-
       <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 12 }}>
-        <span style={{ color: day.color, fontWeight: 600 }}>\u2588</span> Compuesto&nbsp;&nbsp;
-        <span style={{ color: "var(--text3)", fontWeight: 600 }}>\u2588</span> Aislamiento
+        <span style={{ color: day.color, fontWeight: 600 }}>█</span> Compuesto&nbsp;&nbsp;
+        <span style={{ color: "var(--text3)", fontWeight: 600 }}>█</span> Aislamiento
       </div>
 
       <div className="exercise-list">
         {meso.exercises.map((ex, i) => (
           <div key={i} className="fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
-            <ExerciseRow ex={ex} dayColor={day.color} />
+            <ExerciseRow ex={ex} weekIdx={weekIdx} dayColor={day.color} />
           </div>
         ))}
       </div>
@@ -560,7 +2991,7 @@ function TrainingTab() {
       <div className="alert-card info" style={{ marginTop: 16 }}>
         <IconActivity size={18} color="var(--blue)" />
         <div className="alert-text">
-          <strong>Prioridad en definici\u00F3n:</strong> mantener el peso en barra. No intentes progresar — intenta no retroceder. Si pierdes &gt;10% de fuerza, revisa sue\u00F1o y nutrici\u00F3n.
+          <strong>Prioridad en definición:</strong> mantener el peso en barra. No intentes progresar — intenta no retroceder. Si pierdes &gt;10% de fuerza, revisa sueño y nutrición.
         </div>
       </div>
     </div>
@@ -570,21 +3001,21 @@ function TrainingTab() {
 function NutritionTab() {
   return (
     <div className="content fade-up">
-      <div className="section-title">Nutrici\u00F3n</div>
-      <div className="section-sub">D\u00E9ficit -500 kcal sobre TDEE</div>
+      <div className="section-title">Nutrición</div>
+      <div className="section-sub">Déficit -500 kcal sobre TDEE</div>
 
       <div className="card">
         <div className="kcal-label">objetivo diario</div>
         <div className="kcal-big">2.300</div>
         <div className="kcal-label">kcal</div>
         <div className="macro-rings">
-          <MacroRing value={180} unit="g" label="Prote\u00EDna" color="var(--protein)" />
+          <MacroRing value={180} unit="g" label="Proteína" color="var(--protein)" />
           <MacroRing value={235} unit="g" label="Carbos" color="var(--carbs)" />
           <MacroRing value={70} unit="g" label="Grasa" color="var(--fat)" />
         </div>
       </div>
 
-      <div className="section-title" style={{ marginTop: 20 }}>Plan del d\u00EDa</div>
+      <div className="section-title" style={{ marginTop: 20 }}>Plan del día</div>
       {MEALS.map((meal, i) => (
         <div key={i} className="fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
           <MealCard meal={meal} />
@@ -594,7 +3025,7 @@ function NutritionTab() {
       <div className="alert-card" style={{ marginTop: 16 }}>
         <IconAlertTriangle size={18} color="var(--red)" />
         <div className="alert-text">
-          <strong>D\u00EDas de descanso (V+S):</strong> Eliminar pre/post-entreno. A\u00F1adir +20g arroz a comida y +50g patata a cena. Misma prote\u00EDna siempre.
+          <strong>Días de descanso (V+S):</strong> Eliminar pre/post-entreno. Añadir +20g arroz a comida y +50g patata a cena. Misma proteína siempre.
         </div>
       </div>
     </div>
@@ -607,15 +3038,15 @@ function ChecklistTab() {
   const toggle = (id) => setChecks(prev => ({ ...prev, [id]: !prev[id] }));
 
   const dailyChecks = [
-    "Prote\u00EDna \u2265 180g",
-    "Calor\u00EDas \u2264 2.400 kcal",
+    "Proteína ≥ 180g",
+    "Calorías ≤ 2.400 kcal",
     "Creatina 3-5g",
-    "Agua \u2265 2.5L",
-    "Sue\u00F1o \u2265 7h",
+    "Agua ≥ 2.5L",
+    "Sueño ≥ 7h",
   ];
 
   const weeklyChecks = [
-    "Pesarse m\u00EDnimo 3 d\u00EDas",
+    "Pesarse mínimo 3 días",
     "Calcular media semanal",
     "Revisar fuerza vs bulk",
     "LISS 2-3 sesiones completadas",
@@ -680,6 +3111,7 @@ function ChecklistTab() {
 // ── App ──
 function App() {
   const [tab, setTab] = useState(0);
+  const [globalWeek, setGlobalWeek] = useState(1);
 
   const tabs = [
     { label: "Panel", icon: <IconActivity size={18} /> },
@@ -691,11 +3123,11 @@ function App() {
   return (
     <div className="app">
       <div className="app-header">
-        <div className="app-title">Definici\u00F3n \u00B7 12 semanas</div>
+        <div className="app-title">Definición · 12 semanas</div>
         <div className="app-subtitle">
           {tab === 0 && "Panel de control"}
           {tab === 1 && "Entrenamiento"}
-          {tab === 2 && "Nutrici\u00F3n"}
+          {tab === 2 && "Nutrición"}
           {tab === 3 && "Checklist"}
         </div>
         <div className="tab-bar">
@@ -708,8 +3140,8 @@ function App() {
         </div>
       </div>
 
-      {tab === 0 && <DashboardTab />}
-      {tab === 1 && <TrainingTab />}
+      {tab === 0 && <DashboardTab week={globalWeek} setWeek={setGlobalWeek} />}
+      {tab === 1 && <TrainingTab week={globalWeek} setWeek={setGlobalWeek} />}
       {tab === 2 && <NutritionTab />}
       {tab === 3 && <ChecklistTab />}
     </div>
