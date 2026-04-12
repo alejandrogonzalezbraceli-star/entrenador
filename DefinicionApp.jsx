@@ -1,0 +1,1108 @@
+import { useState, useEffect, useRef } from "react";
+import { ChevronRight, ChevronLeft, Flame, Dumbbell, UtensilsCrossed, TrendingDown, Calendar, Clock, Target, Check, ChevronDown, ChevronUp, Activity, Footprints, Moon, Sun, Zap, Award, AlertTriangle } from "lucide-react";
+
+// ── Data ──────────────────────────────────────────────
+
+const PROFILE = { name: "Alejandro", weight: 80, targetWeight: 74.5, bf: 20, targetBf: 15, height: 181, age: 35 };
+
+const MACROS = {
+  cut: { kcal: 2300, protein: 180, carbs: 235, fat: 70 },
+  dietBreak: { kcal: 2800, protein: 180, carbs: 370, fat: 70 },
+};
+
+const MEALS = [
+  { name: "Desayuno", time: "7:30-8:00", icon: "☀️", items: [
+    { food: "Copos de avena", qty: "50g", p: 7, g: 4, c: 32, kcal: 190 },
+    { food: "Leche semidesnatada", qty: "200ml", p: 7, g: 3, c: 10, kcal: 95 },
+    { food: "Claras de huevo", qty: "3 claras", p: 11, g: 0, c: 0, kcal: 44 },
+    { food: "½ Plátano", qty: "80g", p: 1, g: 0, c: 18, kcal: 75 },
+  ]},
+  { name: "Media mañana", time: "10:30", icon: "🥪", items: [
+    { food: "Pan integral", qty: "60g", p: 5, g: 1, c: 28, kcal: 145 },
+    { food: "Pechuga de pavo", qty: "80g", p: 16, g: 1, c: 0, kcal: 75 },
+    { food: "Queso light", qty: "20g", p: 5, g: 2, c: 0, kcal: 35 },
+    { food: "Manzana", qty: "150g", p: 1, g: 0, c: 18, kcal: 75 },
+  ]},
+  { name: "Comida", time: "13:30-14:00", icon: "🍗", items: [
+    { food: "Arroz", qty: "55g crudo", p: 4, g: 0, c: 43, kcal: 190 },
+    { food: "Pechuga de pollo", qty: "200g", p: 44, g: 4, c: 0, kcal: 212 },
+    { food: "Aceite de oliva", qty: "8g", p: 0, g: 8, c: 0, kcal: 72 },
+    { food: "Verduras variadas", qty: "200g", p: 4, g: 0, c: 10, kcal: 55 },
+  ]},
+  { name: "Pre-entreno", time: "1-1.5h antes", icon: "⚡", items: [
+    { food: "Plátano", qty: "100g", p: 1, g: 0, c: 23, kcal: 95 },
+  ]},
+  { name: "Post-entreno", time: "Inmediato", icon: "💪", items: [
+    { food: "Batido whey", qty: "35g", p: 28, g: 1, c: 2, kcal: 130 },
+    { food: "Tortitas de arroz", qty: "25g", p: 2, g: 0, c: 20, kcal: 90 },
+    { food: "Manzana", qty: "100g", p: 0, g: 0, c: 14, kcal: 55 },
+  ]},
+  { name: "Cena", time: "21:00", icon: "🐟", items: [
+    { food: "Patata", qty: "200g cruda", p: 4, g: 0, c: 35, kcal: 155 },
+    { food: "Salmón", qty: "180g", p: 36, g: 19, c: 0, kcal: 315 },
+    { food: "Aceite de oliva", qty: "5g", p: 0, g: 5, c: 0, kcal: 45 },
+    { food: "Ensalada grande", qty: "200g", p: 3, g: 0, c: 8, kcal: 40 },
+  ]},
+  { name: "Antes de dormir", time: "Opcional", icon: "🌙", items: [
+    { food: "Requesón 0%", qty: "150g", p: 18, g: 0, c: 6, kcal: 95 },
+  ]},
+];
+
+const TRAINING_DAYS = [
+  {
+    day: "DOM", label: "Push", muscle: "Pecho + Hombro + Tríceps", color: "#E85A4F",
+    mesos: [
+      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
+        { name: "Press banca barra", sets: 3, reps: "5-7", weight: "70 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Press inclinado DB", sets: 3, reps: "8-10", weight: "24 c/u", rir: "2", rest: "2 min", type: "C" },
+        { name: "Aperturas polea alta", sets: 2, reps: "12-15", weight: "12 c/u", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Press militar DB", sets: 3, reps: "8-10", weight: "18 c/u", rir: "2", rest: "2 min", type: "C" },
+        { name: "Elevaciones laterales", sets: 3, reps: "12-15", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
+        { name: "Press francés EZ", sets: 2, reps: "10-12", weight: "25 kg", rir: "2", rest: "60-90s", type: "A" },
+      ]},
+      { name: "M2: Preservación", weeks: "S5-S8", exercises: [
+        { name: "Press banca barra", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Press inclinado barra", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Aperturas inclinado DB", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Press militar barra", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Laterales cable", sets: 3, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+        { name: "Ext. tríceps cuerda", sets: 2, reps: "12-15", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
+      ]},
+      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
+        { name: "Press banca barra", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
+        { name: "Press inclinado DB", sets: 3, reps: "6-8", weight: "=M1", rir: "2", rest: "2 min", type: "C" },
+        { name: "Cruce poleas", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Push press", sets: 3, reps: "5-7", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Laterales DB", sets: 3, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+        { name: "Fondos paralelas", sets: 2, reps: "6-10", weight: "BW", rir: "2", rest: "90s", type: "C" },
+      ]},
+    ],
+  },
+  {
+    day: "LUN", label: "Pull", muscle: "Espalda + Bíceps", color: "#1976D2",
+    mesos: [
+      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
+        { name: "Jalón al pecho ancho", sets: 3, reps: "6-8", weight: "65 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Remo DB unilateral", sets: 3, reps: "8-10", weight: "30 kg", rir: "2", rest: "90s/lado", type: "C" },
+        { name: "Pullover polea", sets: 2, reps: "12-15", weight: "18 kg", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "20 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Curl barra EZ", sets: 2, reps: "10-12", weight: "30 kg", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Curl martillo", sets: 2, reps: "10-12", weight: "14 c/u", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M2: Preservación", weeks: "S5-S8", exercises: [
+        { name: "Dominadas", sets: 3, reps: "5-8", weight: "BW", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Remo barra prono", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Remo polea neutro", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "22 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Curl inclinado DB", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Curl concentrado", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
+        { name: "Jalón supino cerrado", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
+        { name: "Remo Pendlay", sets: 3, reps: "4-6", weight: "nuevo", rir: "2", rest: "2-3 min", type: "C" },
+        { name: "Pullover polea", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Facepull", sets: 3, reps: "15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
+        { name: "Curl barra recta", sets: 2, reps: "6-8", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Curl martillo polea", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+      ]},
+    ],
+  },
+  {
+    day: "MAR", label: "Quads", muscle: "Cuádriceps + Gemelos", color: "#2E7D32",
+    mesos: [
+      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
+        { name: "Sentadilla barra", sets: 3, reps: "5-7", weight: "75 kg", rir: "2-3", rest: "3 min", type: "C" },
+        { name: "Prensa piernas", sets: 3, reps: "10-12", weight: "120 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Sentadilla búlgara", sets: 2, reps: "8-10", weight: "16 c/u", rir: "2", rest: "90s/lado", type: "C" },
+        { name: "Extensión cuádriceps", sets: 2, reps: "12-15", weight: "40 kg", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Gemelos de pie", sets: 3, reps: "15-20", weight: "60 kg", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M2: Preservación", weeks: "S5-S8", exercises: [
+        { name: "Sentadilla con pausa", sets: 3, reps: "4-6", weight: "=M1", rir: "2-3", rest: "3 min", type: "C" },
+        { name: "Hack squat", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Zancada caminando", sets: 2, reps: "10-12/p", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
+        { name: "Extensión cuádriceps", sets: 2, reps: "12-15", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Gemelos de pie", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
+        { name: "Sentadilla barra", sets: 3, reps: "3-5", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
+        { name: "Sentadilla frontal", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2-3 min", type: "C" },
+        { name: "Prensa piernas", sets: 2, reps: "8-10", weight: "=M1+", rir: "2", rest: "2 min", type: "C" },
+        { name: "Extensión cuádriceps", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Gemelos de pie", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
+      ]},
+    ],
+  },
+  {
+    day: "MIÉ", label: "Posterior", muscle: "Isquios + Glúteos + Gemelos", color: "#F57C00",
+    mesos: [
+      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
+        { name: "Peso muerto rumano", sets: 3, reps: "6-8", weight: "80 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Hip thrust barra", sets: 3, reps: "10-12", weight: "70 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Curl femoral tumbado", sets: 2, reps: "10-12", weight: "35 kg", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Curl femoral sentado", sets: 2, reps: "12-15", weight: "30 kg", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Hiperextensiones", sets: 2, reps: "12-15", weight: "10 kg", rir: "1", rest: "60-90s", type: "C" },
+        { name: "Gemelos sentado", sets: 3, reps: "15-20", weight: "30 kg", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M2: Preservación", weeks: "S5-S8", exercises: [
+        { name: "RDL con pausa", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Hip thrust unilateral", sets: 2, reps: "8-10/p", weight: "nuevo", rir: "2", rest: "90s/p", type: "C" },
+        { name: "Curl nórdico", sets: 2, reps: "4-6", weight: "BW", rir: "2", rest: "90s", type: "C" },
+        { name: "Buenos días", sets: 2, reps: "8-10", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
+        { name: "Hiperext. lastradas", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "C" },
+        { name: "Gemelos sentado", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
+        { name: "Peso muerto rumano", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
+        { name: "Hip thrust barra", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
+        { name: "Curl femoral tumbado", sets: 2, reps: "8-10", weight: "=M2", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Curl femoral sentado", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Swing KB", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60-90s", type: "C" },
+        { name: "Gemelos sentado", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
+      ]},
+    ],
+  },
+  {
+    day: "JUE", label: "Híbrido", muscle: "Upper Body completo", color: "#7B1FA2",
+    mesos: [
+      { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
+        { name: "Press inclinado barra", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Remo con barra", sets: 3, reps: "6-8", weight: "65 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Press Arnold", sets: 2, reps: "10-12", weight: "16 c/u", rir: "2", rest: "90s", type: "C" },
+        { name: "Jalón supino", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Laterales", sets: 2, reps: "15-20", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
+        { name: "SS: Curl + Ext. tríceps", sets: 2, reps: "12-15", weight: "15+22", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M2: Preservación", weeks: "S5-S8", exercises: [
+        { name: "Press plano DB", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Remo polea neutro", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Press militar DB", sets: 2, reps: "8-10", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
+        { name: "Jalón neutro cerrado", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
+        { name: "Laterales cable", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+        { name: "SS: Curl mart. + Kick.", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+      ]},
+      { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
+        { name: "Press inclinado barra", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
+        { name: "Remo barra pesado", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
+        { name: "Press Arnold", sets: 2, reps: "8-10", weight: "=M1", rir: "2", rest: "90s", type: "C" },
+        { name: "Jalón supino", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
+        { name: "Laterales DB", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+        { name: "SS: Curl EZ + Francés", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+      ]},
+    ],
+  },
+];
+
+const WEEK_SCHEDULE = [
+  { day: "DOM", type: "train", label: "Push", color: "#E85A4F" },
+  { day: "LUN", type: "train", label: "Pull", color: "#1976D2" },
+  { day: "MAR", type: "train", label: "Quads", color: "#2E7D32" },
+  { day: "MIÉ", type: "train", label: "Posterior", color: "#F57C00" },
+  { day: "JUE", type: "train", label: "Híbrido", color: "#7B1FA2" },
+  { day: "VIE", type: "rest", label: "Descanso", color: "#546E7A", cardio: "LISS 30-40 min" },
+  { day: "SÁB", type: "rest", label: "Descanso", color: "#546E7A", cardio: "LISS 30-40 min" },
+];
+
+const MESO_INFO = [
+  { num: 1, name: "Mantenimiento de fuerza", weeks: "S1-S4", color: "#1976D2", desc: "Adaptación al déficit. Mantener pesos del bulk." },
+  { num: 2, name: "Preservación muscular", weeks: "S5-S8", color: "#F57C00", desc: "Variantes nuevas. Diet break S8." },
+  { num: 3, name: "Sprint final", weeks: "S9-S12", color: "#2E7D32", desc: "Reps bajas. Señal de fuerza máxima." },
+];
+
+// ── Styles ────────────────────────────────────────────
+
+const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700&family=Space+Mono:wght@400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0D0D0F;
+  --bg2: #16161A;
+  --bg3: #1E1E24;
+  --surface: #242430;
+  --surface2: #2A2A38;
+  --border: #2E2E3A;
+  --text: #E8E8ED;
+  --text2: #9898A6;
+  --text3: #64647A;
+  --accent: #E85A4F;
+  --accent2: #FF7B72;
+  --blue: #58A6FF;
+  --green: #3FB950;
+  --orange: #F0883E;
+  --purple: #BC8CFF;
+  --red: #F85149;
+  --protein: #58A6FF;
+  --carbs: #F0883E;
+  --fat: #BC8CFF;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+
+.app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app-header {
+  padding: 20px 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+  padding-bottom: 16px;
+}
+
+.app-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.app-subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+  background: var(--bg2);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.tab svg { width: 18px; height: 18px; }
+
+.content { padding: 0 20px 100px; }
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.3px;
+}
+
+.card-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+/* ── Macro ring ── */
+.macro-rings {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.macro-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ring-outer {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ring-inner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ring-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ring-unit {
+  font-size: 9px;
+  color: var(--text3);
+}
+
+.ring-label {
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 500;
+}
+
+/* ── Week strip ── */
+.week-strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.week-strip::-webkit-scrollbar { display: none; }
+
+.week-day {
+  flex-shrink: 0;
+  width: 52px;
+  padding: 10px 0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.week-day.active {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.week-day-name {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.week-day-label {
+  font-size: 9px;
+  color: var(--text2);
+}
+
+.week-day-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 6px auto 0;
+}
+
+/* ── Exercise row ── */
+.exercise-list { display: flex; flex-direction: column; gap: 8px; }
+
+.exercise-row {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.exercise-row:active { background: var(--bg3); }
+
+.exercise-type {
+  width: 4px;
+  height: 36px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.exercise-info { flex: 1; min-width: 0; }
+
+.exercise-name {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exercise-detail {
+  font-size: 11px;
+  color: var(--text2);
+  margin-top: 2px;
+  font-family: 'Space Mono', monospace;
+}
+
+.exercise-weight {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.exercise-weight-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.exercise-rir {
+  font-size: 10px;
+  color: var(--text3);
+}
+
+/* ── Meal card ── */
+.meal-card {
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.meal-card:active { background: var(--bg3); }
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meal-left { display: flex; align-items: center; gap: 10px; }
+
+.meal-icon { font-size: 20px; }
+
+.meal-name { font-weight: 600; font-size: 14px; }
+.meal-time { font-size: 11px; color: var(--text3); }
+
+.meal-kcal {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+}
+
+.meal-items {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.meal-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.meal-item-name { color: var(--text); }
+.meal-item-qty { color: var(--text3); font-size: 12px; }
+.meal-item-macros {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--text2);
+}
+
+/* ── Progress ── */
+.progress-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-stat:last-child { border-bottom: none; }
+
+.stat-label { font-size: 13px; color: var(--text2); }
+
+.stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.progress-bar-bg {
+  height: 8px;
+  background: var(--bg);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Meso selector ── */
+.meso-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.meso-tab {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text2);
+  background: var(--bg2);
+  text-align: center;
+}
+
+.meso-tab.active { color: white; }
+
+/* ── Section headers ── */
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 24px 0 12px;
+  letter-spacing: -0.3px;
+}
+
+.section-sub {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+/* ── Alert ── */
+.alert-card {
+  background: linear-gradient(135deg, rgba(248,81,73,0.12), rgba(248,81,73,0.04));
+  border: 1px solid rgba(248,81,73,0.2);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.alert-card.info {
+  background: linear-gradient(135deg, rgba(88,166,255,0.12), rgba(88,166,255,0.04));
+  border-color: rgba(88,166,255,0.2);
+}
+
+.alert-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.alert-text strong { color: var(--text); }
+
+/* ── Keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.kcal-big {
+  font-family: 'Space Mono', monospace;
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+  margin: 8px 0;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, var(--accent), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kcal-label {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.diet-break-banner {
+  background: linear-gradient(135deg, #C62828, #B71C1C);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.diet-break-banner h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.diet-break-banner p {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.checklist-item:active { background: var(--bg3); }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.check-box.checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.check-text { font-size: 13px; }
+.check-text.checked { text-decoration: line-through; color: var(--text3); }
+`;
+
+// ── Components ────────────────────────────────────────
+
+function MacroRing({ value, unit, label, color }) {
+  return (
+    <div className="macro-ring">
+      <div className="ring-outer" style={{ background: `conic-gradient(${color} 0%, ${color} 75%, var(--border) 75%, var(--border) 100%)` }}>
+        <div className="ring-inner">
+          <span className="ring-value" style={{ color }}>{value}</span>
+          <span className="ring-unit">{unit}</span>
+        </div>
+      </div>
+      <span className="ring-label">{label}</span>
+    </div>
+  );
+}
+
+function ExerciseRow({ ex, dayColor }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="exercise-row" onClick={() => setOpen(!open)} style={{ borderLeft: `3px solid ${ex.type === "C" ? dayColor : "var(--text3)"}` }}>
+      <div className="exercise-info">
+        <div className="exercise-name">{ex.name}</div>
+        <div className="exercise-detail">{ex.sets}×{ex.reps} · RIR {ex.rir} · {ex.rest}</div>
+      </div>
+      <div className="exercise-weight">
+        <div className="exercise-weight-val">{ex.weight}</div>
+        <div className="exercise-rir">{ex.type === "C" ? "COMP" : "AISL"}</div>
+      </div>
+    </div>
+  );
+}
+
+function MealCard({ meal }) {
+  const [open, setOpen] = useState(false);
+  const totalKcal = meal.items.reduce((s, i) => s + i.kcal, 0);
+  return (
+    <div className="meal-card" onClick={() => setOpen(!open)}>
+      <div className="meal-header">
+        <div className="meal-left">
+          <span className="meal-icon">{meal.icon}</span>
+          <div>
+            <div className="meal-name">{meal.name}</div>
+            <div className="meal-time">{meal.time}</div>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span className="meal-kcal">{totalKcal} kcal</span>
+          {open ? <ChevronUp size={14} color="#64647A" /> : <ChevronDown size={14} color="#64647A" />}
+        </div>
+      </div>
+      {open && (
+        <div className="meal-items">
+          {meal.items.map((item, i) => (
+            <div className="meal-item" key={i}>
+              <div>
+                <span className="meal-item-name">{item.food}</span>
+                <span className="meal-item-qty"> · {item.qty}</span>
+              </div>
+              <span className="meal-item-macros">{item.p}P {item.g}G {item.c}C</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Tabs ──────────────────────────────────────────────
+
+function DashboardTab() {
+  const [week, setWeek] = useState(1);
+  const mesoNum = week <= 4 ? 1 : week <= 8 ? 2 : 3;
+  const meso = MESO_INFO[mesoNum - 1];
+  const isDietBreak = week === 8;
+  const isDeload = week === 4 || week === 8 || week === 12;
+  const progressPct = ((week) / 12 * 100).toFixed(0);
+  const estWeight = (80 - (week * 0.45)).toFixed(1);
+
+  return (
+    <div className="content fade-up">
+      <div className="section-title">Semana {week} de 12</div>
+
+      <div style={{ display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 4 }}>
+        {[...Array(12)].map((_, i) => (
+          <button key={i} onClick={() => setWeek(i + 1)} style={{
+            flex: "0 0 auto", width: 34, height: 34, borderRadius: 10, border: "none",
+            background: week === i + 1 ? MESO_INFO[i < 4 ? 0 : i < 8 ? 1 : 2].color : "var(--bg2)",
+            color: week === i + 1 ? "#fff" : "var(--text3)",
+            fontFamily: "'Space Mono', monospace", fontSize: 12, fontWeight: 700, cursor: "pointer",
+            transition: "all 0.2s",
+          }}>{i + 1}</button>
+        ))}
+      </div>
+
+      <div className="card" style={{ borderTop: `3px solid ${meso.color}` }}>
+        <div className="card-header">
+          <span className="card-title">Meso {mesoNum}: {meso.name}</span>
+          <span className="card-badge" style={{ background: `${meso.color}22`, color: meso.color }}>{meso.weeks}</span>
+        </div>
+        <p style={{ fontSize: 13, color: "var(--text2)", lineHeight: 1.5 }}>{meso.desc}</p>
+        {isDeload && !isDietBreak && (
+          <div style={{ marginTop: 10, padding: "8px 12px", background: "rgba(255,199,0,0.1)", borderRadius: 8, fontSize: 12, color: "#FFD54F" }}>
+            <strong>DELOAD</strong> — Volumen reducido. Recuperación.
+          </div>
+        )}
+      </div>
+
+      {isDietBreak && (
+        <div className="diet-break-banner">
+          <h3>DIET BREAK</h3>
+          <p>Calorías a mantenimiento (2.800 kcal). Carbos ↑ a 370g. No es cheat week.</p>
+        </div>
+      )}
+
+      <div className="card">
+        <div className="kcal-label">objetivo diario</div>
+        <div className="kcal-big">{isDietBreak ? "2.800" : "2.300"}</div>
+        <div className="kcal-label">kcal</div>
+        <div className="macro-rings">
+          <MacroRing value={isDietBreak ? 180 : 180} unit="g" label="Proteína" color="var(--protein)" />
+          <MacroRing value={isDietBreak ? 370 : 235} unit="g" label="Carbos" color="var(--carbs)" />
+          <MacroRing value={isDietBreak ? 70 : 70} unit="g" label="Grasa" color="var(--fat)" />
+        </div>
+      </div>
+
+      <div className="card">
+        <div className="card-title" style={{ marginBottom: 12 }}>Progreso estimado</div>
+        <div className="progress-stat">
+          <span className="stat-label">Semana</span>
+          <span className="stat-value">{week}/12</span>
+        </div>
+        <div className="progress-bar-bg">
+          <div className="progress-bar-fill" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${meso.color}, var(--accent))` }} />
+        </div>
+        <div className="progress-stat" style={{ marginTop: 8 }}>
+          <span className="stat-label">Peso estimado</span>
+          <span className="stat-value" style={{ color: "var(--green)" }}>{estWeight} kg</span>
+        </div>
+        <div className="progress-stat">
+          <span className="stat-label">Pérdida total est.</span>
+          <span className="stat-value">{(80 - estWeight).toFixed(1)} kg</span>
+        </div>
+        <div className="progress-stat">
+          <span className="stat-label">Ritmo</span>
+          <span className="stat-value">~0.45-0.5 kg/sem</span>
+        </div>
+      </div>
+
+      <div className="section-title">Semana tipo</div>
+      <div className="week-strip">
+        {WEEK_SCHEDULE.map((d, i) => (
+          <div key={i} className="week-day" style={{ background: `${d.color}15` }}>
+            <div className="week-day-name" style={{ color: d.color }}>{d.day}</div>
+            <div className="week-day-label">{d.label}</div>
+            {d.cardio && <div style={{ fontSize: 9, color: "var(--green)", marginTop: 4 }}>🚶</div>}
+            <div className="week-day-dot" style={{ background: d.type === "train" ? d.color : "var(--border)" }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TrainingTab() {
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedMeso, setSelectedMeso] = useState(0);
+  const day = TRAINING_DAYS[selectedDay];
+  const meso = day.mesos[selectedMeso];
+
+  return (
+    <div className="content fade-up">
+      <div className="section-title">Entrenamiento</div>
+
+      <div style={{ display: "flex", gap: 6, marginBottom: 16, overflowX: "auto" }}>
+        {TRAINING_DAYS.map((d, i) => (
+          <button key={i} onClick={() => { setSelectedDay(i); setSelectedMeso(0); }} style={{
+            flex: "0 0 auto", padding: "10px 16px", borderRadius: 10, border: "none",
+            background: selectedDay === i ? d.color : "var(--bg2)",
+            color: selectedDay === i ? "#fff" : "var(--text3)",
+            fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
+            cursor: "pointer", transition: "all 0.2s",
+          }}>{d.day}<br/><span style={{ fontSize: 10, opacity: 0.8 }}>{d.label}</span></button>
+        ))}
+      </div>
+
+      <div className="card" style={{ borderTop: `3px solid ${day.color}` }}>
+        <div className="card-title">{day.label}</div>
+        <p style={{ fontSize: 12, color: "var(--text2)", marginTop: 4 }}>{day.muscle}</p>
+        <p style={{ fontSize: 11, color: "var(--text3)", marginTop: 2 }}>
+          {meso.exercises.length} ejercicios · {meso.exercises.reduce((s, e) => s + e.sets, 0)} series · ~50-60 min
+        </p>
+      </div>
+
+      <div className="meso-tabs">
+        {day.mesos.map((m, i) => (
+          <button key={i} onClick={() => setSelectedMeso(i)}
+            className={`meso-tab ${selectedMeso === i ? "active" : ""}`}
+            style={selectedMeso === i ? { background: MESO_INFO[i].color } : {}}>
+            {m.weeks}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ fontSize: 12, color: "var(--text3)", marginBottom: 12 }}>
+        <span style={{ color: day.color, fontWeight: 600 }}>█</span> Compuesto&nbsp;&nbsp;
+        <span style={{ color: "var(--text3)", fontWeight: 600 }}>█</span> Aislamiento
+      </div>
+
+      <div className="exercise-list">
+        {meso.exercises.map((ex, i) => (
+          <div key={i} className="fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
+            <ExerciseRow ex={ex} dayColor={day.color} />
+          </div>
+        ))}
+      </div>
+
+      <div className="alert-card info" style={{ marginTop: 16 }}>
+        <Activity size={18} color="var(--blue)" style={{ flexShrink: 0, marginTop: 2 }} />
+        <div className="alert-text">
+          <strong>Prioridad en definición:</strong> mantener el peso en barra. No intentes progresar — intenta no retroceder. Si pierdes &gt;10% de fuerza, revisa sueño y nutrición.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NutritionTab() {
+  return (
+    <div className="content fade-up">
+      <div className="section-title">Nutrición</div>
+      <div className="section-sub">Déficit -500 kcal sobre TDEE</div>
+
+      <div className="card">
+        <div className="kcal-label">objetivo diario</div>
+        <div className="kcal-big">2.300</div>
+        <div className="kcal-label">kcal</div>
+        <div className="macro-rings">
+          <MacroRing value={180} unit="g" label="Proteína" color="var(--protein)" />
+          <MacroRing value={235} unit="g" label="Carbos" color="var(--carbs)" />
+          <MacroRing value={70} unit="g" label="Grasa" color="var(--fat)" />
+        </div>
+      </div>
+
+      <div className="section-title" style={{ marginTop: 20 }}>Plan del día</div>
+      {MEALS.map((meal, i) => (
+        <div key={i} className="fade-up" style={{ animationDelay: `${i * 0.05}s` }}>
+          <MealCard meal={meal} />
+        </div>
+      ))}
+
+      <div className="alert-card" style={{ marginTop: 16 }}>
+        <AlertTriangle size={18} color="var(--red)" style={{ flexShrink: 0, marginTop: 2 }} />
+        <div className="alert-text">
+          <strong>Días de descanso (V+S):</strong> Eliminar pre/post-entreno. Añadir +20g arroz a comida y +50g patata a cena. Misma proteína siempre.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChecklistTab() {
+  const [checks, setChecks] = useState({});
+  const [week, setWeek] = useState(1);
+
+  const toggle = (id) => setChecks(prev => ({ ...prev, [id]: !prev[id] }));
+
+  const dailyChecks = [
+    "Proteína ≥ 180g",
+    "Calorías ≤ 2.400 kcal",
+    "Creatina 3-5g",
+    "Agua ≥ 2.5L",
+    "Sueño ≥ 7h",
+  ];
+
+  const weeklyChecks = [
+    "Pesarse mínimo 3 días",
+    "Calcular media semanal",
+    "Revisar fuerza vs bulk",
+    "LISS 2-3 sesiones completadas",
+    "Fotos de progreso (front/side)",
+  ];
+
+  return (
+    <div className="content fade-up">
+      <div className="section-title">Checklist</div>
+
+      <div className="card">
+        <div className="card-title" style={{ marginBottom: 12 }}>Diario</div>
+        {dailyChecks.map((item, i) => {
+          const id = `d-${week}-${i}`;
+          return (
+            <div key={id} className="checklist-item" onClick={() => toggle(id)}>
+              <div className={`check-box ${checks[id] ? "checked" : ""}`}>
+                {checks[id] && <Check size={14} color="#fff" />}
+              </div>
+              <span className={`check-text ${checks[id] ? "checked" : ""}`}>{item}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="card">
+        <div className="card-title" style={{ marginBottom: 12 }}>Semanal</div>
+        {weeklyChecks.map((item, i) => {
+          const id = `w-${week}-${i}`;
+          return (
+            <div key={id} className="checklist-item" onClick={() => toggle(id)}>
+              <div className={`check-box ${checks[id] ? "checked" : ""}`}>
+                {checks[id] && <Check size={14} color="#fff" />}
+              </div>
+              <span className={`check-text ${checks[id] ? "checked" : ""}`}>{item}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="card" style={{ borderTop: "3px solid var(--green)" }}>
+        <div className="card-title" style={{ marginBottom: 12 }}>Reglas de ajuste</div>
+        <div style={{ fontSize: 12, color: "var(--text2)", lineHeight: 1.7 }}>
+          <p style={{ marginBottom: 8 }}>
+            <strong style={{ color: "var(--green)" }}>Pierdes 0.4-0.6 kg/sem</strong> → Todo bien. No cambiar nada.
+          </p>
+          <p style={{ marginBottom: 8 }}>
+            <strong style={{ color: "var(--orange)" }}>Pierdes &gt;0.7 kg/sem</strong> → +100 kcal de carbos.
+          </p>
+          <p style={{ marginBottom: 8 }}>
+            <strong style={{ color: "var(--red)" }}>No pierdes en 2 semanas</strong> → -100 kcal de carbos o +1 LISS.
+          </p>
+          <p>
+            <strong style={{ color: "var(--blue)" }}>Semana 8</strong> → Diet break. Subir a 2.800 kcal (TDEE).
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── App ───────────────────────────────────────────────
+
+export default function App() {
+  const [tab, setTab] = useState(0);
+
+  const tabs = [
+    { label: "Panel", icon: <Activity size={18} /> },
+    { label: "Entreno", icon: <Dumbbell size={18} /> },
+    { label: "Dieta", icon: <UtensilsCrossed size={18} /> },
+    { label: "Check", icon: <Check size={18} /> },
+  ];
+
+  return (
+    <>
+      <style>{CSS}</style>
+      <div className="app">
+        <div className="app-header">
+          <div className="app-title">Definición · 12 semanas</div>
+          <div className="app-subtitle">
+            {tab === 0 && "Panel de control"}
+            {tab === 1 && "Entrenamiento"}
+            {tab === 2 && "Nutrición"}
+            {tab === 3 && "Checklist"}
+          </div>
+          <div className="tab-bar">
+            {tabs.map((t, i) => (
+              <button key={i} className={`tab ${tab === i ? "active" : ""}`} onClick={() => setTab(i)}>
+                {t.icon}
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {tab === 0 && <DashboardTab />}
+        {tab === 1 && <TrainingTab />}
+        {tab === 2 && <NutritionTab />}
+        {tab === 3 && <ChecklistTab />}
+      </div>
+    </>
+  );
+}
