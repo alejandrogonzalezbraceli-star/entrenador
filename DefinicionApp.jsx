@@ -50,7 +50,7 @@ const MEALS = [
 
 const TRAINING_DAYS = [
   {
-    day: "DOM", label: "Push", muscle: "Pecho + Hombro + Tríceps", color: "#E85A4F",
+    day: "DOM", label: "Push", muscle: "Pecho + Hombro + Tríceps + Core", color: "#E85A4F",
     mesos: [
       { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
         { name: "Press banca barra", sets: 3, reps: "5-7", weight: "70 kg", rir: "2-3", rest: "2-3 min", type: "C" },
@@ -59,6 +59,8 @@ const TRAINING_DAYS = [
         { name: "Press militar DB", sets: 3, reps: "8-10", weight: "18 c/u", rir: "2", rest: "2 min", type: "C" },
         { name: "Elevaciones laterales", sets: 3, reps: "12-15", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
         { name: "Press francés EZ", sets: 2, reps: "10-12", weight: "25 kg", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Pallof press", sets: 2, reps: "12-15/lado", weight: "10 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Ab wheel", sets: 2, reps: "10-12", weight: "BW", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M2: Preservación", weeks: "S5-S8", exercises: [
         { name: "Press banca barra", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
@@ -67,6 +69,8 @@ const TRAINING_DAYS = [
         { name: "Press militar barra", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
         { name: "Laterales cable", sets: 3, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
         { name: "Ext. tríceps cuerda", sets: 2, reps: "12-15", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Pallof press rotación", sets: 2, reps: "10-12/lado", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
+        { name: "Plancha RKC", sets: 2, reps: "30-45s", weight: "BW", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
         { name: "Press banca barra", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
@@ -75,27 +79,30 @@ const TRAINING_DAYS = [
         { name: "Push press", sets: 3, reps: "5-7", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
         { name: "Laterales DB", sets: 3, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
         { name: "Fondos paralelas", sets: 2, reps: "6-10", weight: "BW", rir: "2", rest: "90s", type: "C" },
+        { name: "Ab wheel", sets: 2, reps: "12-15", weight: "BW", rir: "1", rest: "60s", type: "A" },
+        { name: "Pallof press", sets: 2, reps: "12-15/lado", weight: "=M2", rir: "1", rest: "60s", type: "A" },
       ]},
     ],
   },
   {
-    day: "LUN", label: "Pull", muscle: "Espalda + Bíceps", color: "#1976D2",
+    day: "LUN", label: "Pull", muscle: "Espalda + Bíceps + Core", color: "#1976D2",
     mesos: [
       { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Jalón al pecho ancho", sets: 3, reps: "6-8", weight: "65 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Remo DB unilateral", sets: 3, reps: "8-10", weight: "30 kg", rir: "2", rest: "90s/lado", type: "C" },
-        { name: "Pullover polea", sets: 2, reps: "12-15", weight: "18 kg", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "20 kg", rir: "1", rest: "60s", type: "A" },
-        { name: "Curl barra EZ", sets: 2, reps: "10-12", weight: "30 kg", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl martillo", sets: 2, reps: "10-12", weight: "14 c/u", rir: "1", rest: "60s", type: "A" },
+        { name: "Jalón pecho ancho", sets: 3, reps: "6-8", weight: "70 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Remo polea neutro", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Pullover polea", sets: 2, reps: "12-15", weight: "17.5 kg", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Facepull cuerda", sets: 3, reps: "12-15", weight: "12.5 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Crunch polea alta", sets: 2, reps: "10-12", weight: "32.5 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Bayesian curl 15°", sets: 3, reps: "12-15", weight: "8 c/u", rir: "1", rest: "60s", type: "A" },
+        { name: "DB curl bilateral", sets: 3, reps: "10-12", weight: "14 c/u", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M2: Preservación", weeks: "S5-S8", exercises: [
         { name: "Dominadas", sets: 3, reps: "5-8", weight: "BW", rir: "2-3", rest: "2-3 min", type: "C" },
         { name: "Remo barra prono", sets: 3, reps: "6-8", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
         { name: "Remo polea neutro", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "22 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Facepull cuerda", sets: 3, reps: "15", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
         { name: "Curl inclinado DB", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
-        { name: "Curl concentrado", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+        { name: "Bayesian curl 15°", sets: 2, reps: "10-12", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
         { name: "Jalón supino cerrado", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
@@ -103,12 +110,12 @@ const TRAINING_DAYS = [
         { name: "Pullover polea", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
         { name: "Facepull", sets: 3, reps: "15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
         { name: "Curl barra recta", sets: 2, reps: "6-8", weight: "nuevo", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl martillo polea", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+        { name: "DB curl bilateral", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
       ]},
     ],
   },
   {
-    day: "MAR", label: "Quads", muscle: "Cuádriceps + Gemelos", color: "#2E7D32",
+    day: "MAR", label: "Quads", muscle: "Cuádriceps + Gemelos + Abductores", color: "#2E7D32",
     mesos: [
       { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
         { name: "Sentadilla barra", sets: 3, reps: "5-7", weight: "75 kg", rir: "2-3", rest: "3 min", type: "C" },
@@ -116,6 +123,7 @@ const TRAINING_DAYS = [
         { name: "Sentadilla búlgara", sets: 2, reps: "8-10", weight: "16 c/u", rir: "2", rest: "90s/lado", type: "C" },
         { name: "Extensión cuádriceps", sets: 2, reps: "12-15", weight: "40 kg", rir: "1", rest: "60-90s", type: "A" },
         { name: "Gemelos de pie", sets: 3, reps: "15-20", weight: "60 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Abductores máquina", sets: 2, reps: "15-20", weight: "40 kg", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M2: Preservación", weeks: "S5-S8", exercises: [
         { name: "Sentadilla con pausa", sets: 3, reps: "4-6", weight: "=M1", rir: "2-3", rest: "3 min", type: "C" },
@@ -123,6 +131,7 @@ const TRAINING_DAYS = [
         { name: "Zancada caminando", sets: 2, reps: "10-12/p", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
         { name: "Extensión cuádriceps", sets: 2, reps: "12-15", weight: "=M1", rir: "1", rest: "60-90s", type: "A" },
         { name: "Gemelos de pie", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+        { name: "Abductores máquina", sets: 2, reps: "12-15", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
         { name: "Sentadilla barra", sets: 3, reps: "3-5", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
@@ -130,40 +139,41 @@ const TRAINING_DAYS = [
         { name: "Prensa piernas", sets: 2, reps: "8-10", weight: "=M1+", rir: "2", rest: "2 min", type: "C" },
         { name: "Extensión cuádriceps", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
         { name: "Gemelos de pie", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
+        { name: "Abductores máquina", sets: 2, reps: "12-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
       ]},
     ],
   },
   {
-    day: "MIÉ", label: "Posterior", muscle: "Isquios + Glúteos + Gemelos", color: "#F57C00",
+    day: "MIÉ", label: "Posterior", muscle: "Isquios + Glúteos + Aductores", color: "#F57C00",
     mesos: [
       { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
-        { name: "Peso muerto rumano", sets: 3, reps: "6-8", weight: "80 kg", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Hip thrust barra", sets: 3, reps: "10-12", weight: "70 kg", rir: "2", rest: "2 min", type: "C" },
-        { name: "Curl femoral tumbado", sets: 2, reps: "10-12", weight: "35 kg", rir: "2", rest: "60-90s", type: "A" },
-        { name: "Curl femoral sentado", sets: 2, reps: "12-15", weight: "30 kg", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Peso muerto rumano", sets: 3, reps: "6-8", weight: "90 kg", rir: "2-3", rest: "2-3 min", type: "C" },
+        { name: "Hip thrust máq. Technogym", sets: 3, reps: "10-12", weight: "40 kg", rir: "2", rest: "2 min", type: "C" },
+        { name: "Curl femoral sentado", sets: 2, reps: "10-12", weight: "55 kg", rir: "2", rest: "60-90s", type: "A" },
+        { name: "Curl femoral tumbado", sets: 2, reps: "10-12", weight: "35 kg", rir: "1", rest: "60-90s", type: "A" },
         { name: "Hiperextensiones", sets: 2, reps: "12-15", weight: "10 kg", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "15-20", weight: "30 kg", rir: "1", rest: "60s", type: "A" },
+        { name: "Aductores máquina", sets: 3, reps: "12-15", weight: "75 kg", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M2: Preservación", weeks: "S5-S8", exercises: [
         { name: "RDL con pausa", sets: 3, reps: "5-7", weight: "=M1", rir: "2-3", rest: "2-3 min", type: "C" },
-        { name: "Hip thrust unilateral", sets: 2, reps: "8-10/p", weight: "nuevo", rir: "2", rest: "90s/p", type: "C" },
+        { name: "Hip thrust máq. unilateral", sets: 2, reps: "8-10/p", weight: "nuevo", rir: "2", rest: "90s/p", type: "C" },
         { name: "Curl nórdico", sets: 2, reps: "4-6", weight: "BW", rir: "2", rest: "90s", type: "C" },
         { name: "Buenos días", sets: 2, reps: "8-10", weight: "nuevo", rir: "2", rest: "90s", type: "C" },
         { name: "Hiperext. lastradas", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "12-15", weight: "=M1", rir: "1", rest: "60s", type: "A" },
+        { name: "Aductores máquina", sets: 3, reps: "10-12", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
         { name: "Peso muerto rumano", sets: 3, reps: "4-6", weight: "=M2", rir: "2", rest: "3 min", type: "C" },
-        { name: "Hip thrust barra", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
+        { name: "Hip thrust máq. Technogym", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
         { name: "Curl femoral tumbado", sets: 2, reps: "8-10", weight: "=M2", rir: "2", rest: "60-90s", type: "A" },
         { name: "Curl femoral sentado", sets: 2, reps: "10-12", weight: "=M2", rir: "1", rest: "60-90s", type: "A" },
         { name: "Swing KB", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60-90s", type: "C" },
-        { name: "Gemelos sentado", sets: 3, reps: "10-15", weight: "=M2", rir: "1", rest: "60s", type: "A" },
+        { name: "Aductores máquina", sets: 3, reps: "8-10", weight: "=M2+", rir: "1", rest: "60s", type: "A" },
       ]},
     ],
   },
   {
-    day: "JUE", label: "Híbrido", muscle: "Upper Body completo", color: "#7B1FA2",
+    day: "JUE", label: "Híbrido", muscle: "Upper Body completo + Core", color: "#7B1FA2",
     mesos: [
       { name: "M1: Mantenimiento fuerza", weeks: "S1-S4", exercises: [
         { name: "Press inclinado barra", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
@@ -172,6 +182,8 @@ const TRAINING_DAYS = [
         { name: "Jalón supino", sets: 3, reps: "8-10", weight: "60 kg", rir: "2", rest: "2 min", type: "C" },
         { name: "Laterales", sets: 2, reps: "15-20", weight: "10 c/u", rir: "1", rest: "60s", type: "A" },
         { name: "SS: Curl + Ext. tríceps", sets: 2, reps: "12-15", weight: "15+22", rir: "1", rest: "60s", type: "A" },
+        { name: "Plancha lateral", sets: 2, reps: "30s/lado", weight: "BW", rir: "1", rest: "60s", type: "A" },
+        { name: "Crunch polea alta", sets: 2, reps: "12-15", weight: "25 kg", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M2: Preservación", weeks: "S5-S8", exercises: [
         { name: "Press plano DB", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
@@ -180,6 +192,8 @@ const TRAINING_DAYS = [
         { name: "Jalón neutro cerrado", sets: 3, reps: "8-10", weight: "nuevo", rir: "2", rest: "2 min", type: "C" },
         { name: "Laterales cable", sets: 2, reps: "12-15", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
         { name: "SS: Curl mart. + Kick.", sets: 2, reps: "10-12", weight: "nuevo", rir: "1", rest: "60s", type: "A" },
+        { name: "Dead bug", sets: 2, reps: "10-12/lado", weight: "BW", rir: "1", rest: "60s", type: "A" },
+        { name: "Crunch polea alta", sets: 2, reps: "12-15", weight: "=M1+", rir: "1", rest: "60s", type: "A" },
       ]},
       { name: "M3: Sprint final", weeks: "S9-S12", exercises: [
         { name: "Press inclinado barra", sets: 3, reps: "5-7", weight: "=M2", rir: "2", rest: "2-3 min", type: "C" },
@@ -188,6 +202,8 @@ const TRAINING_DAYS = [
         { name: "Jalón supino", sets: 3, reps: "6-8", weight: "=M2", rir: "2", rest: "2 min", type: "C" },
         { name: "Laterales DB", sets: 2, reps: "10-12", weight: "=M1", rir: "1", rest: "60s", type: "A" },
         { name: "SS: Curl EZ + Francés", sets: 2, reps: "8-10", weight: "nuevo", rir: "1", rest: "60-90s", type: "A" },
+        { name: "Plancha lateral", sets: 2, reps: "40s/lado", weight: "BW", rir: "1", rest: "60s", type: "A" },
+        { name: "Crunch polea alta", sets: 2, reps: "10-12", weight: "=M2+", rir: "1", rest: "60s", type: "A" },
       ]},
     ],
   },

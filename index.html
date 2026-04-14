@@ -65,7 +65,7 @@ body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inse
 .week-day-dot { width: 6px; height: 6px; border-radius: 50%; margin: 6px auto 0; }
 
 .exercise-list { display: flex; flex-direction: column; gap: 8px; }
-.exercise-row { display: flex; align-items: center; padding: 12px; background: var(--bg2); border-radius: var(--radius-sm); gap: 10px; cursor: pointer; transition: background 0.15s; }
+.exercise-row { display: flex; flex-direction: column; align-items: flex-start; padding: 12px; background: var(--bg2); border-radius: var(--radius-sm); gap: 10px; cursor: pointer; transition: background 0.15s; }
 .exercise-row:active { background: var(--bg3); }
 .exercise-info { flex: 1; min-width: 0; }
 .exercise-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -123,6 +123,13 @@ body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inse
 .check-box.checked { background: var(--green); border-color: var(--green); }
 .check-text { font-size: 13px; }
 .check-text.checked { text-decoration: line-through; color: var(--text3); }
+
+.exercise-desc { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2); line-height: 1.5; }
+.exercise-desc p { margin-bottom: 8px; font-style: italic; }
+.exercise-desc ul { list-style: none; padding: 0; }
+.exercise-desc li { padding: 3px 0; padding-left: 16px; position: relative; font-size: 11px; color: var(--text3); }
+.exercise-desc li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+.exercise-chevron { flex-shrink: 0; transition: transform 0.2s; color: var(--text3); }
 </style>
 </head>
 <body>
@@ -189,7 +196,7 @@ const TRAINING_DAYS = [
   {
     "day": "DOM",
     "label": "Push",
-    "muscle": "Pecho + Hombro + Tríceps",
+    "muscle": "Pecho + Hombro + Tríceps + Core",
     "color": "#E85A4F",
     "mesos": [
       {
@@ -361,6 +368,62 @@ const TRAINING_DAYS = [
                 "sets": 1,
                 "weight": "25 kg",
                 "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Pallof press",
+            "reps": "12-15/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Ab wheel",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
               }
             ]
           }
@@ -537,6 +600,62 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Pallof press rotación",
+            "reps": "10-12/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Plancha RKC",
+            "reps": "30-45s",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              }
+            ]
           }
         ]
       },
@@ -711,6 +830,62 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Ab wheel",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Pallof press",
+            "reps": "12-15/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              }
+            ]
           }
         ]
       }
@@ -719,7 +894,7 @@ const TRAINING_DAYS = [
   {
     "day": "LUN",
     "label": "Pull",
-    "muscle": "Espalda + Bíceps",
+    "muscle": "Espalda + Bíceps + Core",
     "color": "#1976D2",
     "mesos": [
       {
@@ -727,58 +902,58 @@ const TRAINING_DAYS = [
         "weeks": "S1-S4",
         "exercises": [
           {
-            "name": "Jalón al pecho ancho",
+            "name": "Jalón pecho ancho",
             "reps": "6-8",
             "rest": "2-3 min",
             "type": "C",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "65 kg",
-                "rir": "3"
+                "weight": "70 kg",
+                "rir": "2-3"
               },
               {
                 "sets": 3,
-                "weight": "65 kg",
-                "rir": "2"
+                "weight": "70 kg",
+                "rir": "2-3"
               },
               {
                 "sets": 3,
-                "weight": "65 kg",
-                "rir": "1"
+                "weight": "70 kg",
+                "rir": "2-3"
               },
               {
-                "sets": 2,
-                "weight": "65 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "70 kg",
+                "rir": "2-3"
               }
             ]
           },
           {
-            "name": "Remo DB unilateral",
+            "name": "Remo polea neutro",
             "reps": "8-10",
-            "rest": "90s/lado",
+            "rest": "2 min",
             "type": "C",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "30 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "30 kg",
+                "weight": "60 kg",
                 "rir": "2"
               },
               {
                 "sets": 3,
-                "weight": "30 kg",
-                "rir": "1"
+                "weight": "60 kg",
+                "rir": "2"
               },
               {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "60 kg",
+                "rir": "2"
               }
             ]
           },
@@ -790,107 +965,135 @@ const TRAINING_DAYS = [
             "weeks": [
               {
                 "sets": 2,
-                "weight": "18 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "18 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 2,
-                "weight": "18 kg",
+                "weight": "17.5 kg",
                 "rir": "1"
               },
               {
-                "sets": 1,
-                "weight": "18 kg",
-                "rir": "3-4"
+                "sets": 2,
+                "weight": "17.5 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "17.5 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "17.5 kg",
+                "rir": "1"
               }
             ]
           },
           {
             "name": "Facepull cuerda",
-            "reps": "15",
+            "reps": "12-15",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "20 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "20 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 3,
-                "weight": "20 kg",
+                "weight": "12.5 kg",
                 "rir": "1"
               },
               {
-                "sets": 2,
-                "weight": "20 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "12.5 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "12.5 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "12.5 kg",
+                "rir": "1"
               }
             ]
           },
           {
-            "name": "Curl barra EZ",
-            "reps": "10-12",
-            "rest": "60-90s",
-            "type": "A",
-            "weeks": [
-              {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "1"
-              },
-              {
-                "sets": 1,
-                "weight": "30 kg",
-                "rir": "3-4"
-              }
-            ]
-          },
-          {
-            "name": "Curl martillo",
+            "name": "Crunch polea alta",
             "reps": "10-12",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 2,
-                "weight": "14 c/u",
-                "rir": "3"
+                "weight": "32.5 kg",
+                "rir": "1"
               },
               {
                 "sets": 2,
-                "weight": "14 c/u",
-                "rir": "2"
+                "weight": "32.5 kg",
+                "rir": "1"
               },
               {
                 "sets": 2,
+                "weight": "32.5 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "32.5 kg",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Bayesian curl 15°",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
+                "weight": "8 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "8 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "8 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "8 c/u",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "DB curl bilateral",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 3,
                 "weight": "14 c/u",
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 3,
                 "weight": "14 c/u",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "14 c/u",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "14 c/u",
+                "rir": "1"
               }
             ]
           }
@@ -909,22 +1112,22 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "BW",
-                "rir": "3"
+                "rir": "2-3"
               },
               {
                 "sets": 3,
                 "weight": "BW",
-                "rir": "2"
+                "rir": "2-3"
               },
               {
                 "sets": 3,
                 "weight": "BW",
-                "rir": "1"
+                "rir": "2-3"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "BW",
-                "rir": "3-4"
+                "rir": "2-3"
               }
             ]
           },
@@ -937,7 +1140,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "nuevo",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 3,
@@ -947,12 +1150,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "nuevo",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -965,12 +1168,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -978,9 +1176,14 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
               }
             ]
           },
@@ -992,23 +1195,23 @@ const TRAINING_DAYS = [
             "weeks": [
               {
                 "sets": 3,
-                "weight": "22 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "22 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 3,
-                "weight": "22 kg",
+                "weight": "=M1+",
                 "rir": "1"
               },
               {
-                "sets": 2,
-                "weight": "22 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
               }
             ]
           },
@@ -1021,12 +1224,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -1034,37 +1232,42 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
               }
             ]
           },
           {
-            "name": "Curl concentrado",
+            "name": "Bayesian curl 15°",
             "reps": "10-12",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 2,
-                "weight": "nuevo",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
-                "rir": "2"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
+                "weight": "=M1+",
                 "rir": "1"
               },
               {
-                "sets": 1,
-                "weight": "nuevo",
-                "rir": "3-4"
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
               }
             ]
           }
@@ -1083,7 +1286,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 3,
@@ -1093,12 +1296,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -1111,7 +1314,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "nuevo",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 3,
@@ -1121,12 +1324,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "nuevo",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -1139,12 +1342,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "=M1",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "=M1",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -1152,9 +1350,14 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "=M1",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
               }
             ]
           },
@@ -1167,12 +1370,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "=M2",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 3,
@@ -1180,9 +1378,14 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2",
+                "rir": "1"
               }
             ]
           },
@@ -1195,7 +1398,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 2,
@@ -1205,40 +1408,40 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
           {
-            "name": "Curl martillo polea",
+            "name": "DB curl bilateral",
             "reps": "10-12",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 2,
-                "weight": "nuevo",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
-                "rir": "2"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
+                "weight": "=M1",
                 "rir": "1"
               },
               {
-                "sets": 1,
-                "weight": "nuevo",
-                "rir": "3-4"
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
               }
             ]
           }
@@ -1249,7 +1452,7 @@ const TRAINING_DAYS = [
   {
     "day": "MAR",
     "label": "Quads",
-    "muscle": "Cuádriceps + Gemelos",
+    "muscle": "Cuádriceps + Gemelos + Abductores",
     "color": "#2E7D32",
     "mesos": [
       {
@@ -1393,6 +1596,34 @@ const TRAINING_DAYS = [
                 "sets": 2,
                 "weight": "60 kg",
                 "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Abductores máquina",
+            "reps": "15-20",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "40 kg",
+                "rir": "1"
               }
             ]
           }
@@ -1541,6 +1772,34 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Abductores máquina",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              }
+            ]
           }
         ]
       },
@@ -1687,6 +1946,34 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Abductores máquina",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
+              }
+            ]
           }
         ]
       }
@@ -1695,7 +1982,7 @@ const TRAINING_DAYS = [
   {
     "day": "MIÉ",
     "label": "Posterior",
-    "muscle": "Isquios + Glúteos + Gemelos",
+    "muscle": "Isquios + Glúteos + Aductores",
     "color": "#F57C00",
     "mesos": [
       {
@@ -1710,51 +1997,79 @@ const TRAINING_DAYS = [
             "weeks": [
               {
                 "sets": 3,
-                "weight": "80 kg",
-                "rir": "3"
+                "weight": "90 kg",
+                "rir": "2-3"
               },
               {
                 "sets": 3,
-                "weight": "80 kg",
-                "rir": "2"
+                "weight": "90 kg",
+                "rir": "2-3"
               },
               {
                 "sets": 3,
-                "weight": "80 kg",
-                "rir": "1"
+                "weight": "90 kg",
+                "rir": "2-3"
               },
               {
-                "sets": 2,
-                "weight": "80 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "90 kg",
+                "rir": "2-3"
               }
             ]
           },
           {
-            "name": "Hip thrust barra",
+            "name": "Hip thrust máq. Technogym",
             "reps": "10-12",
             "rest": "2 min",
             "type": "C",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "70 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "70 kg",
+                "weight": "40 kg",
                 "rir": "2"
               },
               {
                 "sets": 3,
-                "weight": "70 kg",
-                "rir": "1"
+                "weight": "40 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "40 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 3,
+                "weight": "40 kg",
+                "rir": "2"
+              }
+            ]
+          },
+          {
+            "name": "Curl femoral sentado",
+            "reps": "10-12",
+            "rest": "60-90s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "55 kg",
+                "rir": "2"
               },
               {
                 "sets": 2,
-                "weight": "70 kg",
-                "rir": "3-4"
+                "weight": "55 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "55 kg",
+                "rir": "2"
+              },
+              {
+                "sets": 2,
+                "weight": "55 kg",
+                "rir": "2"
               }
             ]
           },
@@ -1767,12 +2082,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "35 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "35 kg",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -1780,37 +2090,14 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "35 kg",
-                "rir": "3-4"
-              }
-            ]
-          },
-          {
-            "name": "Curl femoral sentado",
-            "reps": "12-15",
-            "rest": "60-90s",
-            "type": "A",
-            "weeks": [
-              {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 2,
-                "weight": "30 kg",
                 "rir": "1"
               },
               {
-                "sets": 1,
-                "weight": "30 kg",
-                "rir": "3-4"
+                "sets": 2,
+                "weight": "35 kg",
+                "rir": "1"
               }
             ]
           },
@@ -1823,12 +2110,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "10 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "10 kg",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -1836,37 +2118,42 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "10 kg",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "10 kg",
+                "rir": "1"
               }
             ]
           },
           {
-            "name": "Gemelos sentado",
-            "reps": "15-20",
+            "name": "Aductores máquina",
+            "reps": "12-15",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "30 kg",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "30 kg",
-                "rir": "2"
-              },
-              {
-                "sets": 3,
-                "weight": "30 kg",
+                "weight": "75 kg",
                 "rir": "1"
               },
               {
-                "sets": 2,
-                "weight": "30 kg",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "75 kg",
+                "rir": "1"
               }
             ]
           }
@@ -1885,27 +2172,27 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M1",
-                "rir": "3"
+                "rir": "2-3"
               },
               {
                 "sets": 3,
                 "weight": "=M1",
-                "rir": "2"
+                "rir": "2-3"
               },
               {
                 "sets": 3,
                 "weight": "=M1",
-                "rir": "1"
+                "rir": "2-3"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "=M1",
-                "rir": "3-4"
+                "rir": "2-3"
               }
             ]
           },
           {
-            "name": "Hip thrust unilateral",
+            "name": "Hip thrust máq. unilateral",
             "reps": "8-10/p",
             "rest": "90s/p",
             "type": "C",
@@ -1913,7 +2200,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 2,
@@ -1923,12 +2210,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -1941,7 +2228,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "BW",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 2,
@@ -1951,12 +2238,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "BW",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "BW",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -1969,7 +2256,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 2,
@@ -1979,12 +2266,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -1997,12 +2284,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "=M1",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "=M1",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -2010,37 +2292,42 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "=M1",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1",
+                "rir": "1"
               }
             ]
           },
           {
-            "name": "Gemelos sentado",
-            "reps": "12-15",
+            "name": "Aductores máquina",
+            "reps": "10-12",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "=M1",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "=M1",
-                "rir": "2"
-              },
-              {
-                "sets": 3,
-                "weight": "=M1",
+                "weight": "=M1+",
                 "rir": "1"
               },
               {
-                "sets": 2,
-                "weight": "=M1",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M1+",
+                "rir": "1"
               }
             ]
           }
@@ -2059,7 +2346,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 3,
@@ -2069,17 +2356,17 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
           {
-            "name": "Hip thrust barra",
+            "name": "Hip thrust máq. Technogym",
             "reps": "6-8",
             "rest": "2 min",
             "type": "C",
@@ -2087,7 +2374,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 3,
@@ -2097,12 +2384,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 3,
                 "weight": "=M2",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 2,
+                "sets": 3,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -2115,7 +2402,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "=M2",
-                "rir": "3"
+                "rir": "2"
               },
               {
                 "sets": 2,
@@ -2125,12 +2412,12 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "=M2",
-                "rir": "1"
+                "rir": "2"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "2"
               }
             ]
           },
@@ -2143,12 +2430,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "=M2",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "=M2",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -2156,9 +2438,14 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "=M2",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2",
+                "rir": "1"
               }
             ]
           },
@@ -2171,12 +2458,7 @@ const TRAINING_DAYS = [
               {
                 "sets": 2,
                 "weight": "nuevo",
-                "rir": "3"
-              },
-              {
-                "sets": 2,
-                "weight": "nuevo",
-                "rir": "2"
+                "rir": "1"
               },
               {
                 "sets": 2,
@@ -2184,37 +2466,42 @@ const TRAINING_DAYS = [
                 "rir": "1"
               },
               {
-                "sets": 1,
+                "sets": 2,
                 "weight": "nuevo",
-                "rir": "3-4"
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "nuevo",
+                "rir": "1"
               }
             ]
           },
           {
-            "name": "Gemelos sentado",
-            "reps": "10-15",
+            "name": "Aductores máquina",
+            "reps": "8-10",
             "rest": "60s",
             "type": "A",
             "weeks": [
               {
                 "sets": 3,
-                "weight": "=M2",
-                "rir": "3"
-              },
-              {
-                "sets": 3,
-                "weight": "=M2",
-                "rir": "2"
-              },
-              {
-                "sets": 3,
-                "weight": "=M2",
+                "weight": "=M2+",
                 "rir": "1"
               },
               {
-                "sets": 2,
-                "weight": "=M2",
-                "rir": "3-4"
+                "sets": 3,
+                "weight": "=M2+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2+",
+                "rir": "1"
+              },
+              {
+                "sets": 3,
+                "weight": "=M2+",
+                "rir": "1"
               }
             ]
           }
@@ -2225,7 +2512,7 @@ const TRAINING_DAYS = [
   {
     "day": "JUE",
     "label": "Híbrido",
-    "muscle": "Upper Body completo",
+    "muscle": "Upper Body completo + Core",
     "color": "#7B1FA2",
     "mesos": [
       {
@@ -2397,6 +2684,62 @@ const TRAINING_DAYS = [
                 "sets": 1,
                 "weight": "15+22",
                 "rir": "3-4"
+              }
+            ]
+          },
+          {
+            "name": "Plancha lateral",
+            "reps": "30s/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Crunch polea alta",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "25 kg",
+                "rir": "1"
               }
             ]
           }
@@ -2573,6 +2916,62 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Dead bug",
+            "reps": "10-12/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Crunch polea alta",
+            "reps": "12-15",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M1+",
+                "rir": "1"
+              }
+            ]
           }
         ]
       },
@@ -2747,6 +3146,62 @@ const TRAINING_DAYS = [
                 "rir": "3-4"
               }
             ]
+          },
+          {
+            "name": "Plancha lateral",
+            "reps": "40s/lado",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "BW",
+                "rir": "1"
+              }
+            ]
+          },
+          {
+            "name": "Crunch polea alta",
+            "reps": "10-12",
+            "rest": "60s",
+            "type": "A",
+            "weeks": [
+              {
+                "sets": 2,
+                "weight": "=M2+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2+",
+                "rir": "1"
+              },
+              {
+                "sets": 2,
+                "weight": "=M2+",
+                "rir": "1"
+              }
+            ]
           }
         ]
       }
@@ -2770,6 +3225,76 @@ const MESO_INFO = [
   { num: 3, name: "Sprint final", weeks: "S9-S12", color: "#2E7D32", desc: "Reps bajas. Señal de fuerza máxima." },
 ];
 
+const EXERCISE_TIPS = {
+  "Press banca barra": { desc: "Compuesto principal de pecho. Trabaja pectoral mayor, deltoides anterior y tríceps.", tips: ["Retrae escápulas y arquea ligeramente la espalda", "Baja la barra hasta el esternón, codos a ~75°", "Empuja vertical, sin rebotar en el pecho"] },
+  "Press inclinado DB": { desc: "Énfasis en pecho superior (clavicular). Mancuernas permiten mayor rango.", tips: ["Banco a 30-45°, no más para no cargar hombro", "Baja hasta sentir estiramiento, sin forzar", "Junta arriba sin chocar las mancuernas"] },
+  "Press inclinado barra": { desc: "Variante con barra para pecho superior. Permite más carga que DB.", tips: ["Banco a 30°, agarre algo más estrecho que plano", "Baja al pecho superior, no al cuello", "Bloquea arriba sin perder retracción escapular"] },
+  "Aperturas polea alta": { desc: "Aislamiento de pecho. Tensión constante por poleas.", tips: ["Ligera flexión de codo fija durante todo el recorrido", "Junta las manos a la altura del esternón", "Controla la fase excéntrica 2-3 segundos"] },
+  "Aperturas inclinado DB": { desc: "Aislamiento de pecho superior con estiramiento profundo.", tips: ["Banco a 30°, codos ligeramente flexionados", "Baja hasta sentir estiramiento, no dolor", "Aprieta pecho arriba, no juntes las DB"] },
+  "Press militar DB": { desc: "Compuesto de hombro. Mancuernas permiten rotación natural.", tips: ["Empieza a la altura de las orejas", "Empuja vertical, no hacia delante", "Core apretado, sin arquear la lumbar"] },
+  "Press militar barra": { desc: "Compuesto principal de hombro anterior y medio.", tips: ["Agarre a la anchura de hombros o algo más", "Barra parte del pecho superior, sube vertical", "Aprieta glúteos para estabilizar el tronco"] },
+  "Elevaciones laterales": { desc: "Aislamiento de deltoides medio. Clave para amplitud de hombros.", tips: ["Ligera inclinación hacia delante", "Sube hasta paralelo al suelo, meñique arriba", "No uses impulso — si necesitas, baja peso"] },
+  "Laterales": { desc: "Aislamiento de deltoides medio. Variante genérica.", tips: ["Ligera inclinación hacia delante", "Sube hasta paralelo, meñique ligeramente arriba", "Controla la bajada, no dejes caer"] },
+  "Laterales DB": { desc: "Elevaciones laterales con mancuernas.", tips: ["Codos ligeramente flexionados, fijos", "Sube hasta 90° de abducción", "Tempo controlado: 2s subida, 3s bajada"] },
+  "Laterales cable": { desc: "Laterales en polea. Tensión constante en todo el ROM.", tips: ["Polea a la altura de la cadera o más baja", "Cruza por delante o por detrás del cuerpo", "Mantén el codo ligeramente flexionado"] },
+  "Press francés EZ": { desc: "Aislamiento de tríceps. Énfasis en cabeza larga.", tips: ["Codos apuntando al techo, fijos", "Baja la barra hacia la frente o detrás", "Extiende sin bloquear completamente"] },
+  "Ext. tríceps cuerda": { desc: "Aislamiento de tríceps en polea. Buen pump y conexión.", tips: ["Codos pegados al cuerpo", "Abre la cuerda al final del recorrido", "Aprieta 1s en la contracción máxima"] },
+  "Cruce poleas": { desc: "Aislamiento de pecho con tensión constante.", tips: ["Un pie adelantado para estabilidad", "Cruza las manos al final del movimiento", "Controla la excéntrica, no dejes que te arrastre"] },
+  "Push press": { desc: "Press militar con impulso de piernas. Permite más carga.", tips: ["Pequeño dip de rodillas, explosivo hacia arriba", "Barra pegada a la cara durante la subida", "Bloquea arriba, baja controlado"] },
+  "Fondos paralelas": { desc: "Compuesto para pecho inferior y tríceps.", tips: ["Inclínate hacia delante para más pecho", "Baja hasta 90° de codo mínimo", "Si hay dolor de hombro, reduce rango"] },
+  "Pallof press": { desc: "Anti-rotación de core. Trabaja oblicuos y estabilizadores.", tips: ["Polea a la altura del pecho", "Extiende brazos y mantén 2s sin rotar", "Si rotas el tronco, baja el peso"] },
+  "Pallof press rotación": { desc: "Variante con rotación controlada del Pallof.", tips: ["Extiende y rota lentamente hacia la polea", "Resiste la rotación en la vuelta", "Mantén caderas fijas mirando al frente"] },
+  "Ab wheel": { desc: "Anti-extensión de core. Muy exigente para recto abdominal.", tips: ["Empieza de rodillas si no dominas la versión de pie", "Aprieta glúteos y core antes de extender", "No dejes que la lumbar se hunda"] },
+  "Plancha RKC": { desc: "Plancha de alta tensión. Más efectiva que plancha estándar.", tips: ["Aprieta puños, glúteos y cuádriceps al máximo", "Intenta juntar codos y pies (sin moverlos)", "Respira corto y controlado, no relajes"] },
+  "Jalón pecho ancho": { desc: "Compuesto de espalda. Énfasis en dorsal ancho (amplitud).", tips: ["Agarre pronado, más ancho que hombros", "Lleva la barra al pecho superior, no al cuello", "Inicia el tirón con los dorsales, no con bíceps"] },
+  "Jalón supino cerrado": { desc: "Jalón con agarre supino estrecho. Más implicación de bíceps.", tips: ["Agarre supino a la anchura de hombros", "Lleva la barra al pecho, sacando pecho", "Aprieta dorsales abajo 1s antes de subir"] },
+  "Jalón supino": { desc: "Jalón con agarre supino. Buen estiramiento dorsal.", tips: ["Agarre supino, anchura de hombros", "Tira hacia el esternón, codos hacia atrás", "No te inclines excesivamente hacia atrás"] },
+  "Jalón neutro cerrado": { desc: "Jalón con agarre neutro estrecho. Menor estrés en hombros.", tips: ["Usa accesorio de agarre neutro/V", "Tira al pecho, apretando escápulas", "Buen ejercicio si tienes molestias de hombro"] },
+  "Remo polea neutro": { desc: "Remo sentado en polea. Trabaja dorsal y romboides.", tips: ["Pecho fuera, espalda recta", "Tira hacia el ombligo, codos pegados al cuerpo", "Aguanta la contracción 1s antes de soltar"] },
+  "Remo con barra": { desc: "Compuesto pesado de espalda. Grosor dorsal y trapecios.", tips: ["Inclinación de tronco ~45°, espalda neutra", "Tira hacia el ombligo, no hacia el pecho", "No uses impulso de cadera para subir"] },
+  "Remo barra prono": { desc: "Remo con barra agarre pronado. Más énfasis en dorsal alto.", tips: ["Agarre pronado algo más ancho que hombros", "Tira hacia el pecho bajo, codos abiertos", "Mantén la espalda neutra en todo momento"] },
+  "Remo barra pesado": { desc: "Remo con barra con carga alta. Priorizando fuerza.", tips: ["Algo de impulso aceptable con cargas altas", "Mantén siempre la espalda neutra", "Rango completo: extensión abajo, contracción arriba"] },
+  "Remo Pendlay": { desc: "Remo explosivo desde el suelo. Máxima activación dorsal.", tips: ["Barra parte del suelo en cada rep", "Tronco paralelo al suelo, tirón explosivo", "Baja controlado, apoya y repite"] },
+  "Pullover polea": { desc: "Aislamiento de dorsal. Estiramiento profundo.", tips: ["Brazos casi rectos, ligera flexión de codo", "Tira con los dorsales, no con tríceps", "Siente el estiramiento arriba, aprieta abajo"] },
+  "Facepull cuerda": { desc: "Trabajo de deltoides posterior y rotadores externos.", tips: ["Polea a la altura de la cara o más alta", "Tira hacia la cara, abriendo la cuerda", "Aprieta escápulas 2s al final"] },
+  "Facepull": { desc: "Deltoides posterior y salud del hombro.", tips: ["Rotación externa al final del movimiento", "Codos a la altura de los hombros", "Más importante la técnica que el peso"] },
+  "Crunch polea alta": { desc: "Flexión de tronco con resistencia. Recto abdominal.", tips: ["Arrodillado, cuerda detrás de la cabeza", "Flexiona el tronco, no la cadera", "Aprieta abdominales arriba, no tires con brazos"] },
+  "Bayesian curl 15°": { desc: "Curl de bíceps con máximo estiramiento. Banco inclinado 15°.", tips: ["Brazo extendido detrás del cuerpo para estiramiento", "Curl completo, aprieta arriba 1s", "No balancees el hombro, solo mueve el codo"] },
+  "DB curl bilateral": { desc: "Curl de bíceps clásico con mancuernas.", tips: ["Codos pegados al cuerpo, fijos", "Supina durante la subida para máxima contracción", "Baja controlado 2-3s, sin dejar caer"] },
+  "Curl inclinado DB": { desc: "Curl en banco inclinado. Gran estiramiento del bíceps.", tips: ["Banco a 45-60°, brazos colgando", "Curl sin mover los codos de su posición", "Muy efectivo para cabeza larga del bíceps"] },
+  "Curl barra recta": { desc: "Curl de bíceps con barra recta. Permite más carga.", tips: ["Agarre supino a la anchura de hombros", "No balancees el tronco para subir", "Si molestan las muñecas, usa barra EZ"] },
+  "Dominadas": { desc: "Compuesto rey de espalda. Peso corporal como resistencia.", tips: ["Agarre pronado, más ancho que hombros", "Desde extensión completa hasta mentón sobre barra", "Si no llegas a las reps, usa banda elástica"] },
+  "Sentadilla barra": { desc: "Rey de los ejercicios. Cuádriceps, glúteos, core.", tips: ["Barra en trapecios, pies a la anchura de hombros", "Baja hasta paralelo mínimo, rodillas en dirección de pies", "Core apretado, pecho alto, no redondees lumbar"] },
+  "Sentadilla con pausa": { desc: "Sentadilla con pausa abajo. Elimina impulso elástico.", tips: ["Pausa de 2-3s en el punto más bajo", "Mantén tensión durante la pausa, no relajes", "Sube explosivo desde la pausa"] },
+  "Sentadilla frontal": { desc: "Sentadilla con barra adelante. Más cuádriceps, menos espalda.", tips: ["Barra en deltoides anteriores, codos altos", "Tronco más vertical que en back squat", "Si pierdes codos, para la serie"] },
+  "Sentadilla búlgara": { desc: "Unilateral de cuádriceps y glúteo. Corrige asimetrías.", tips: ["Pie trasero en banco, empeine apoyado", "Baja vertical, rodilla delantera no pasa excesivamente la punta", "Mantén tronco erguido, core activado"] },
+  "Prensa piernas": { desc: "Compuesto de cuádriceps con soporte lumbar.", tips: ["Pies a la anchura de hombros en la plataforma", "Baja hasta 90° de rodilla mínimo", "No bloquees rodillas arriba completamente"] },
+  "Hack squat": { desc: "Sentadilla en máquina. Cuádriceps con mínimo estrés lumbar.", tips: ["Espalda pegada al respaldo", "Pies algo adelantados para más cuádriceps", "Baja profundo, la máquina te protege"] },
+  "Zancada caminando": { desc: "Unilateral dinámico. Cuádriceps y glúteos.", tips: ["Paso largo para más glúteo, corto para más cuádriceps", "Rodilla trasera casi toca el suelo", "Tronco erguido, no te inclines hacia delante"] },
+  "Extensión cuádriceps": { desc: "Aislamiento puro de cuádriceps.", tips: ["Ajusta respaldo para que rodillas coincidan con eje", "Sube hasta extensión completa, aprieta 1s", "Baja controlado, no dejes caer"] },
+  "Gemelos de pie": { desc: "Aislamiento de gastrocnemio (gemelo externo).", tips: ["Extensión completa arriba, mantén 1-2s", "Baja hasta estiramiento completo", "No rebotes, tempo lento y controlado"] },
+  "Abductores máquina": { desc: "Aislamiento de glúteo medio y menor. Estabilidad de cadera.", tips: ["Siéntate erguido, no te inclines", "Abre hasta el final del rango, aprieta 1s", "Cierra controlado, no dejes que la máquina te cierre"] },
+  "Peso muerto rumano": { desc: "Compuesto de cadena posterior. Isquios y glúteos.", tips: ["Barra pegada a las piernas en todo momento", "Bisagra de cadera: empuja el culo hacia atrás", "Baja hasta sentir estiramiento de isquios, no más"] },
+  "RDL con pausa": { desc: "Peso muerto rumano con pausa abajo. Mayor tiempo bajo tensión.", tips: ["Pausa de 2-3s en el punto de máximo estiramiento", "No relajes la espalda durante la pausa", "Sube contrayendo glúteos, no tirando con lumbar"] },
+  "Hip thrust máq. Technogym": { desc: "Extensión de cadera en máquina. Máxima activación glútea.", tips: ["Apoya la espalda alta en el soporte", "Empuja con talones, no con puntas", "Aprieta glúteos arriba 2s, bloqueo completo"] },
+  "Hip thrust máq. unilateral": { desc: "Hip thrust a una pierna. Corrige asimetrías de glúteo.", tips: ["Misma técnica que bilateral, una pierna elevada", "Mantén caderas niveladas, no rotar", "Menor carga pero más activación unilateral"] },
+  "Curl femoral sentado": { desc: "Aislamiento de isquios en posición de estiramiento.", tips: ["Ajusta máquina: rodillas al eje de rotación", "Flexiona hasta contracción máxima", "Fase excéntrica lenta de 3s"] },
+  "Curl femoral tumbado": { desc: "Aislamiento de isquios tumbado. Diferente curva de fuerza.", tips: ["Caderas pegadas al banco, no las levantes", "Sube hasta ~90° de flexión de rodilla", "Aprieta isquios arriba antes de bajar"] },
+  "Curl nórdico": { desc: "Ejercicio excéntrico de isquios. Muy intenso.", tips: ["Baja lo más lento que puedas controlando", "Puedes usar las manos para ayudar en la subida", "Progresa en rango: empieza con rango parcial si es necesario"] },
+  "Buenos días": { desc: "Bisagra de cadera con barra. Isquios y erectores.", tips: ["Barra en trapecios como sentadilla", "Flexión de cadera con rodillas ligeramente flexionadas", "No redondees nunca la espalda — si lo haces, baja peso"] },
+  "Hiperextensiones": { desc: "Extensión de cadera en banco romano. Erectores e isquios.", tips: ["Apoyo a la altura de la cadera, no del abdomen", "Baja hasta ~90° y sube hasta alinear con piernas", "Disco en el pecho para añadir carga"] },
+  "Hiperext. lastradas": { desc: "Hiperextensiones con peso adicional. Mayor estímulo.", tips: ["Disco abrazado al pecho o detrás de la cabeza", "Mismo rango que sin peso, no acortes", "Si pierdes forma, reduce peso inmediatamente"] },
+  "Aductores máquina": { desc: "Aislamiento de aductores. Estabilidad de cadera.", tips: ["Siéntate erguido, espalda apoyada", "Cierra hasta contracción completa, aprieta 1s", "Abre controlado, siente el estiramiento"] },
+  "Swing KB": { desc: "Ejercicio balístico de cadena posterior. Glúteos e isquios.", tips: ["Bisagra de cadera explosiva, no sentadilla", "Brazos son péndulos, la fuerza viene de la cadera", "Aprieta glúteos fuerte en la extensión"] },
+  "Press Arnold": { desc: "Press de hombro con rotación. Trabaja las 3 cabezas del deltoides.", tips: ["Empieza con mancuernas delante, supinación", "Rota mientras subes, termina con agarre pronado", "Movimiento fluido, no separes rotación y press"] },
+  "Press plano DB": { desc: "Press de pecho con mancuernas. Mayor rango que barra.", tips: ["Baja hasta estiramiento completo de pecho", "Empuja vertical, junta arriba sin chocar", "Retrae escápulas como en press banca"] },
+  "SS: Curl + Ext. tríceps": { desc: "Superserie bíceps + tríceps. Eficiente en tiempo.", tips: ["Haz curl primero, extensión inmediatamente después", "Sin descanso entre ejercicios, descanso al final", "Mantén la técnica limpia pese a la fatiga"] },
+  "SS: Curl mart. + Kick.": { desc: "Superserie curl martillo + kickback de tríceps.", tips: ["Curl martillo: agarre neutro, codos fijos", "Kickback: inclínate, extiende atrás apretando", "Sin descanso entre ejercicios"] },
+  "SS: Curl EZ + Francés": { desc: "Superserie curl EZ + press francés. Brazos completos.", tips: ["Curl EZ: agarre cerrado en la curva interior", "Francés: misma barra, codos al techo", "Eficiente: mismo implemento, sin transición"] },
+  "Plancha lateral": { desc: "Estabilización lateral de core. Oblicuos y cuadrado lumbar.", tips: ["Codo bajo el hombro, cuerpo recto", "No dejes caer la cadera, mantén línea recta", "Aprieta glúteo y oblicuo del lado de apoyo"] },
+  "Dead bug": { desc: "Anti-extensión de core en posición supina. Seguro para lumbar.", tips: ["Espalda baja pegada al suelo siempre", "Extiende brazo y pierna opuestos lentamente", "Si la lumbar se despega, reduce rango"] },
+};
+
 // ── Components ──
 function MacroRing({ value, unit, label, color }) {
   return (
@@ -2788,15 +3313,31 @@ function MacroRing({ value, unit, label, color }) {
 function ExerciseRow({ ex, weekIdx, dayColor }) {
   const [open, setOpen] = useState(false);
   const wData = ex.weeks[weekIdx];
+  const tips = EXERCISE_TIPS[ex.name];
   return (
-    <div className="exercise-row" onClick={() => setOpen(!open)} style={{ borderLeft: `3px solid ${ex.type === "C" ? dayColor : "var(--text3)"}` }}>
-      <div className="exercise-info">
-        <div className="exercise-name">{ex.name}</div>
-        <div className="exercise-detail">{wData.sets}×{ex.reps} · RIR {wData.rir} · {ex.rest}</div>
-      </div>
-      <div className="exercise-weight">
-        <div className="exercise-weight-val">{wData.weight}</div>
-        <div className="exercise-rir">{ex.type === "C" ? "COMP" : "AISL"}</div>
+    <div style={{ borderLeft: `3px solid ${ex.type === "C" ? dayColor : "var(--text3)"}` }} className="exercise-row" onClick={() => setOpen(!open)} >
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div className="exercise-info">
+            <div className="exercise-name">{ex.name}</div>
+            <div className="exercise-detail">{wData.sets}×{ex.reps} · RIR {wData.rir} · {ex.rest}</div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="exercise-weight">
+              <div className="exercise-weight-val">{wData.weight}</div>
+              <div className="exercise-rir">{ex.type === "C" ? "COMP" : "AISL"}</div>
+            </div>
+            <svg className="exercise-chevron" style={{ transform: open ? "rotate(180deg)" : "rotate(0)" }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        {open && tips && (
+          <div className="exercise-desc">
+            <p>{tips.desc}</p>
+            <ul>
+              {tips.tips.map((t, i) => <li key={i}>{t}</li>)}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
